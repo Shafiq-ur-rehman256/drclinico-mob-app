@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import GetStartedNav from './src/layouts/get-started/getStarted.Navigation';
+import GetStartedNav from './src/layouts/getStarted.Navigation';
 import * as Font from 'expo-font';
 import { useState } from 'react';
 

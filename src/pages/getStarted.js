@@ -1,12 +1,20 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { PrimaryButton } from '../components/primaryButton';
 // import { Image } from 'expo-image';
 
 const blurhash =
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
 
-export default function GetStarted() {
+export default function GetStarted({ navigation }) {
+
+    routeTo = () => {
+
+        console.log("run");
+        navigation.navigate('select_registration')
+
+    }
 
     return (
         <View style={styles.container} >
@@ -14,24 +22,22 @@ export default function GetStarted() {
                 <View style={styles.logoContainer}>
                     <Image
                         style={styles.image}
-                        source={require('../../../assets/drlogo.png')}
+                        source={require('../../assets/drlogo.png')}
                     ></Image>
                     <Text style={styles.logotext} >DrClinico</Text>
                 </View>
                 <View style={styles.bannerContainer}>
                     <Image
                         style={styles.bannerImage}
-                        source={require('../../../assets/bannerImage.png')}
+                        source={require('../../assets/bannerImage.png')}
                     ></Image>
                 </View>
             </View>
             <View style={styles.bottom} >
 
                 <Text style={styles.mainText}>Manage your health and happy future</Text>
+                <PrimaryButton prop={{ text: 'Get Started', onPress: routeTo }}></PrimaryButton>
 
-                <Pressable style={styles.bottonBtn} >
-                    <Text style={styles.BtnText} >Get Started</Text>
-                </Pressable>
             </View>
             <StatusBar backgroundColor="#00386D"></StatusBar>
         </View>
