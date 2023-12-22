@@ -11,7 +11,7 @@ export const SelectRegistration = ({ navigation }) => {
     const [emergency, selectEmergency] = useState(true);
 
     routeTo = () => {
-        // console.log("fuck mussaiyab and haris");
+        
     }
 
     selectRegistration = (state, stateMethod) => {
