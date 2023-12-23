@@ -11,9 +11,11 @@ export const SelectRegistration = ({ navigation }) => {
     const [emergency, selectEmergency] = useState(true);
 
     routeTo = () => {
-        
-    }
 
+        if(!pateint) navigation.navigate('RegisterStack',{ screen: 'patient_signup' });
+        if(!doctor) navigation.navigate('RegisterStack',{ screen: 'doctor_signup' });
+
+    }
     selectRegistration = (state, stateMethod) => {
         resetStates()
         stateMethod(() => !state)

@@ -1,18 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import GetStartedNav from './src/layouts/getStarted.Navigation';
 import * as Font from 'expo-font';
 import { useState } from 'react';
+import AppNavigator from './src/layouts/app.Navigation';
 
 
 const fetchFonts = () => {
   return Font.loadAsync({
-  'gilroy-semibold': require('./assets/fonts/gilroy/Gilroy-SemiBold.ttf'),
-  // 'roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
-  // 'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf')
+    'gilroy-semibold': require('./assets/fonts/gilroy/Gilroy-SemiBold.ttf'),
+    // 'roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
+    // 'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf')
   });
-  };
+};
 
 export default function App() {
 
@@ -36,17 +33,6 @@ export default function App() {
 
 
   return (
-   
-      <GetStartedNav></GetStartedNav>
-      
+    <AppNavigator></AppNavigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

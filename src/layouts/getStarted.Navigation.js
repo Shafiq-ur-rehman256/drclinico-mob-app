@@ -11,12 +11,12 @@ export default function GetStartedNav() {
 
     return (
 
-        <NavigationContainer >
+  
             <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}} >
                 <Stack.Screen name="Home" component={GetStarted} />
                 <Stack.Screen name="select_registration" component={SelectRegistration} />
             </Stack.Navigator>
-        </NavigationContainer>
+       
 
     )
 
