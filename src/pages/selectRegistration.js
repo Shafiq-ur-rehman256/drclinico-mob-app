@@ -14,6 +14,7 @@ export const SelectRegistration = ({ navigation }) => {
 
         if(!pateint) navigation.navigate('RegisterStack',{ screen: 'patient_signup' });
         if(!doctor) navigation.navigate('RegisterStack',{ screen: 'doctor_signup' });
+        if(!emergency) navigation.navigate('MainStack',{ screen: 'main' });
 
     }
     selectRegistration = (state, stateMethod) => {

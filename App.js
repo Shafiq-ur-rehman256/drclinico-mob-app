@@ -2,7 +2,6 @@ import * as Font from 'expo-font';
 import { useState } from 'react';
 import AppNavigator from './src/layouts/app.Navigation';
 
-
 const fetchFonts = () => {
   return Font.loadAsync({
     'gilroy-semibold': require('./assets/fonts/gilroy/Gilroy-SemiBold.ttf'),
@@ -12,7 +11,7 @@ const fetchFonts = () => {
 };
 
 export default function App() {
-
+  
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   const loadFonts = async () => {

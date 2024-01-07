@@ -1,7 +1,8 @@
+import * as React from 'react';
 import { StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+// import OTPInputView from '@twotalltotems/react-native-otp-input';
 import { PrimaryButton } from '../components/primaryButton';
-import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 export default PatientOtp = () => {
 
@@ -19,9 +20,22 @@ export default PatientOtp = () => {
                 <Text style={styles.primaryHeading}>Code send to your email</Text>
             </View>
 
-            <OTPInputView
+            <View style={styles.otpContainer}>
+
+                <TextInput
+                    style={styles.input}
+                    maxLength={5}
+                    // onBlur={onBlur}
+                    placeholder='X-X-X-X-X'
+                    // onChangeText={value => onChange(value)}
+                    // value={value}
+                />
+
+            </View>
+
+            {/* <OTPInputView
                 style={{ width: '80%', height: 50, marginTop: 30 }}
-                pinCount={4}
+                pinCount={5}
                 // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
                 // onCodeChanged = {code => { this.setState({code})}}
                 autoFocusOnLoad
@@ -30,7 +44,7 @@ export default PatientOtp = () => {
                 onCodeFilled={(code) => {
                     console.log(`Code is ${code}, you are good to go!`)
                 }}
-            />
+            /> */}
 
             <View style={styles.bottomText}>
                 <Text style={styles.part1}>Resend Code?</Text>
@@ -80,6 +94,19 @@ const styles = StyleSheet.create({
         color: '#A7A6A5',
         textAlign: 'center',
         fontSize: 18,
+    },
+    otpContainer: {
+        width: '80%'
+    },
+    input: {
+        backgroundColor: '#EFF2F1',
+        height: 45,
+        borderRadius: 10,
+        paddingLeft: 15,
+        paddingRight: 15,
+        fontSize: 16,
+        marginTop: 20,
+        textAlign: 'center'
     },
     underlineStyleBase: {
         width: 50,
