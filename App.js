@@ -1,37 +1,29 @@
-import * as Font from 'expo-font';
-import { useState } from 'react';
+import React from 'react';
 import AppNavigator from './src/layouts/app.Navigation';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, StatusBar } from 'react-native';
 
-const fetchFonts = () => {
-  return Font.loadAsync({
-    'gilroy-semibold': require('./assets/fonts/gilroy/Gilroy-SemiBold.ttf'),
-    // 'roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
-    // 'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf')
-  });
-};
-
-export default function App() {
+export default function  App() {
   
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [fontsLoaded] = useFonts({
+    'Gilroy-SemiBold': require('./assets/fonts/gilroy/Gilroy-SemiBold.ttf'),
+    'Gilroy-Bold': require('./assets/fonts/gilroy/Gilroy-Bold.ttf'),
+    'Gilroy-Medium': require('./assets/fonts/gilroy/Gilroy-Medium.ttf'),
+    'Gilroy-Light': require('./assets/fonts/gilroy/Gilroy-Light.ttf')
+  });
 
-  const loadFonts = async () => {
-    await Font.loadAsync({
-      'Gilroy-SemiBold': require('./assets/fonts/gilroy/Gilroy-SemiBold.ttf'),
-      // 'custom-bold': require('./assets/fonts/CustomFont-Bold.ttf'),
-      // Add more fonts if needed
-    });
 
-    setFontsLoaded(true);
-  };
-
-  // Load fonts before rendering the app
   if (!fontsLoaded) {
-    loadFonts();
-    return null;
+    return (
+      <View></View>
+    );
   }
 
-
   return (
-    <AppNavigator></AppNavigator>
+     
+        <AppNavigator ></AppNavigator>
+
+    
   );
 }

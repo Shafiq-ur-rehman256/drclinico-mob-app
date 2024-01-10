@@ -6,6 +6,10 @@ import { PrimaryButton } from '../components/primaryButton';
 
 export default PatientOtp = () => {
 
+    const routeTo = () => {
+        
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.logoContainer}>

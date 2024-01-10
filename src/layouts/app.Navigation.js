@@ -5,11 +5,27 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
+
 const Stack = createStackNavigator();
 
-const AppNavigator = () => (
+// const loadFonts = async () => {
+//   await Font.loadAsync({
+//     'Gilroy-SemiBold': require('../../assets/fonts/gilroy/Gilroy-SemiBold.ttf'),
+//     'Gilroy-Bold': require('../../assets/fonts/gilroy/Gilroy-Bold.ttf'),
+//     'Gilroy-Medium': require('../../assets/fonts/gilroy/Gilroy-Medium.ttf'),
+//     'Gilroy-Light': require('../../assets/fonts/gilroy/Gilroy-Light.ttf')
+//   });
+
+// };
+
+const AppNavigator = () => {
+
+
+  // loadFonts()
+
+  return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName="HomeStack" screenOptions={{headerShown: false}}>
         <Stack.Screen name="HomeStack" component={GetStartedNav} />
         <Stack.Screen name="RegisterStack" component={RegistrationNav} />
         <Stack.Screen name="MainStack" component={MainNavigation} />
@@ -17,4 +33,6 @@ const AppNavigator = () => (
     </NavigationContainer>
   );
   
+
+}
   export default AppNavigator;

@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-nativ
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo,FontAwesome5  } from '@expo/vector-icons';
+import emergencyHome from './emergencyHome';
 
 function HomeScreen() {
     return (
@@ -34,7 +35,7 @@ export default Mainpage = () => {
             let Size;
             console.log(route);
             console.log(color, size);
-            if (route.name === 'Home') {
+            if (route.name === 'Home1') {
               iconName = focused ? 'ios-home' : 'ios-home-outline';
               Size = size
             } else if (route.name === 'Settings') {
@@ -63,7 +64,7 @@ export default Mainpage = () => {
           tabBarInactiveTintColor: '#2FC1FF',
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home1" component={emergencyHome} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
         <Tab.Screen name="Settings1" component={SettingsScreen} />
         <Tab.Screen name="Settings2" component={SettingsScreen} />

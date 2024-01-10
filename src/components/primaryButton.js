@@ -3,12 +3,11 @@ import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 
 
 export const PrimaryButton = ({prop}) => {
-
-    const { text, onPress } = prop;
+    // const { text, onPress } = prop;
 
     return (
-        <Pressable style={styles.primaryBtn} onPress={onPress} >
-            <Text style={styles.BtnText} >{text}</Text>
+        <Pressable style={styles.primaryBtn} onPress={prop.onPress} >
+            <Text style={styles.BtnText} >{prop.text}</Text>
         </Pressable>
     )
 
