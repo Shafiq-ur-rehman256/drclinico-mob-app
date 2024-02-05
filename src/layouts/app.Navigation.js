@@ -1,10 +1,9 @@
 import GetStartedNav from "./getStarted.Navigation";
 import MainNavigation from "./main.Navigation";
 import RegistrationNav from "./registration.Navigation";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-
+import EmergencyNavigation from "./emergency.Navigation";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
@@ -19,20 +18,20 @@ const Stack = createStackNavigator();
 // };
 
 const AppNavigator = () => {
-
-
   // loadFonts()
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeStack" screenOptions={{headerShown: false}}>
+      <Stack.Navigator
+        initialRouteName="HomeStack"
+        screenOptions={{ headerShown: false }}
+      >
         <Stack.Screen name="HomeStack" component={GetStartedNav} />
         <Stack.Screen name="RegisterStack" component={RegistrationNav} />
         <Stack.Screen name="MainStack" component={MainNavigation} />
+        <Stack.Screen name="EmergencyStack" component={EmergencyNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-  
-
-}
-  export default AppNavigator;
+};
+export default AppNavigator;

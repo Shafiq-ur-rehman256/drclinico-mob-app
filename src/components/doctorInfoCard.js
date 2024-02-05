@@ -8,7 +8,7 @@ import {
   StatusBar,
 } from "react-native";
 
-export default DoctorCard = ({ doctorDetails }) => {
+export default DoctorInfoCard = () => {
   return (
     <View style={styles.container}>
       <View style={styles.profileImageContainer}>
@@ -19,11 +19,12 @@ export default DoctorCard = ({ doctorDetails }) => {
       </View>
 
       <View style={styles.docterDetailContainer}>
-        <Text style={styles.doctorName}>{doctorDetails?.name}</Text>
-        <Text style={styles.doctorSpecialization}>
-          {doctorDetails?.speciality}
-        </Text>
-        <Text style={styles.activeSymbol}>{doctorDetails?.status}</Text>
+        <View style={styles.doctorNameRow}>
+          <Text style={styles.doctorName}>Dr. Pediatrician</Text>
+          <Text style={styles.activeSymbol}>Active</Text>
+        </View>
+
+        <Text style={styles.doctorSpecialization}>Specialist Cardiologist</Text>
       </View>
     </View>
   );
@@ -32,15 +33,18 @@ export default DoctorCard = ({ doctorDetails }) => {
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
+    // flexDirection: "row",
     alignItems: "center",
     color: "black",
     backgroundColor: "#fff",
     borderRadius: 7,
-    padding: 15,
-    width: "100%",
-    columnGap: 20,
+    paddingTop: 0,
+    paddingBottom: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+    width: "80%",
+    height: 250,
+    // columnGap: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -52,12 +56,15 @@ const styles = StyleSheet.create({
   },
   profileImageContainer: {},
   profileImage: {
-    height: 75,
-    width: 75,
+    // height: 95,
+    width: 307,
+    height: 160,
   },
   docterDetailContainer: {
     // display: 'flex'
-    rowGap: 3,
+    // rowGap: 3,
+    marginTop: 20,
+    width: "100%",
   },
   doctorName: {
     fontFamily: "Gilroy-Medium",
@@ -67,6 +74,7 @@ const styles = StyleSheet.create({
   doctorSpecialization: {
     fontFamily: "Gilroy-Light",
     fontSize: 14,
+    marginTop: 15,
   },
   activeSymbol: {
     color: "#0EBE7F",
@@ -75,5 +83,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     height: 22,
     borderRadius: 5,
+  },
+  doctorNameRow: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
