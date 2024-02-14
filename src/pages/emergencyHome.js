@@ -8,11 +8,8 @@ import {
   StatusBar,
 } from "react-native";
 import DoctorCard from "../components/doctorCard";
-import { useState } from "react";
 
 export default EmergencyHome = ({ navigation }) => {
-  const [selectedDoctor, setSelectedDoctor] = useState({});
-
   const doctors = [
     {
       id: 1,
@@ -21,6 +18,8 @@ export default EmergencyHome = ({ navigation }) => {
       rating: 4.5,
       reviews: 20,
       status: "Active",
+      aboutMe:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc. Nulla facilisi. Sed auctor, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc.",
     },
     {
       id: 2,
@@ -29,6 +28,8 @@ export default EmergencyHome = ({ navigation }) => {
       rating: 4.2,
       reviews: 15,
       status: "Active",
+      aboutMe:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc. Nulla facilisi. Sed auctor, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc.",
     },
     {
       id: 3,
@@ -37,6 +38,8 @@ export default EmergencyHome = ({ navigation }) => {
       rating: 4.8,
       reviews: 25,
       status: "Active",
+      aboutMe:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc. Nulla facilisi. Sed auctor, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc.",
     },
     {
       id: 4,
@@ -45,20 +48,13 @@ export default EmergencyHome = ({ navigation }) => {
       rating: 4.6,
       reviews: 18,
       status: "Active",
+      aboutMe:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc. Nulla facilisi. Sed auctor, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc.",
     },
   ];
-  const openDoctorsInfo = (selectedDoctorsId) => {
-    console.log(selectedDoctorsId, "selectedDoctorsId");
-    const selectedDoctordData = doctors.find(
-      (doctor) => doctor.id === selectedDoctorsId
-    );
-    setSelectedDoctor(selectedDoctordData);
-    console.log(selectedDoctordData, "selectedDoctordData");
-  };
 
   const routeTo = (doctorId) => {
     const selectedDoctorData = doctors.find((doctor) => doctor.id === doctorId);
-    setSelectedDoctor(selectedDoctorData);
     navigation.navigate("EmergencyStack", {
       screen: "doctor_info",
       params: { selectedDoctor: selectedDoctorData },
@@ -95,10 +91,7 @@ export default EmergencyHome = ({ navigation }) => {
       <View style={styles.doctorList}>
         {doctors.map((doctor) => {
           return (
-            <Pressable
-              onTouchStart={() => openDoctorsInfo(doctor.id)}
-              onPress={() => routeTo(selectedDoctor)}
-            >
+            <Pressable key={doctor.id} onPress={() => routeTo(doctor.id)}>
               <DoctorCard key={doctor.id} doctorDetails={doctor}></DoctorCard>
             </Pressable>
           );
@@ -122,7 +115,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     rowGap: 15,
-    // padding: ,
     marginTop: "7%",
   },
   welcomeNoteContainer: {
@@ -132,9 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "80%",
     columnGap: 15,
-    // marginTop:
   },
-  avatarContainer: {},
   welcomeAvatar: {
     width: 60,
     height: 60,
@@ -167,7 +157,6 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
-  searchInput: {},
   doctorList: {
     display: "flex",
     justifyContent: "center",

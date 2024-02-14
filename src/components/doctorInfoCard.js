@@ -1,39 +1,30 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Pressable,
-  TextInput,
-  StatusBar,
-} from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 
-export default DoctorInfoCard = () => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.profileImageContainer}>
-        <Image
-          style={styles.profileImage}
-          source={require("../../assets/doc1.png")}
-        ></Image>
-      </View>
-
-      <View style={styles.docterDetailContainer}>
-        <View style={styles.doctorNameRow}>
-          <Text style={styles.doctorName}>Dr. Pediatrician</Text>
-          <Text style={styles.activeSymbol}>Active</Text>
-        </View>
-
-        <Text style={styles.doctorSpecialization}>Specialist Cardiologist</Text>
-      </View>
+export default DoctorInfoCard = ({ selectedDoctor }) => (
+  <View style={styles.container}>
+    <View style={styles.profileImageContainer}>
+      <Image
+        style={styles.profileImage}
+        source={require("../../assets/doc1.png")}
+      ></Image>
     </View>
-  );
-};
+
+    <View style={styles.docterDetailContainer}>
+      <View style={styles.doctorNameRow}>
+        <Text style={styles.doctorName}>{selectedDoctor.name}</Text>
+        <Text style={styles.activeSymbol}>{selectedDoctor.status}</Text>
+      </View>
+
+      <Text style={styles.doctorSpecialization}>
+        {selectedDoctor.speciality}
+      </Text>
+    </View>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    // flexDirection: "row",
     alignItems: "center",
     color: "black",
     backgroundColor: "#fff",
@@ -44,7 +35,6 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     width: "80%",
     height: 250,
-    // columnGap: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -56,13 +46,10 @@ const styles = StyleSheet.create({
   },
   profileImageContainer: {},
   profileImage: {
-    // height: 95,
     width: 307,
     height: 160,
   },
   docterDetailContainer: {
-    // display: 'flex'
-    // rowGap: 3,
     marginTop: 20,
     width: "100%",
   },
