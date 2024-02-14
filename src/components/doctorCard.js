@@ -7,6 +7,7 @@ import {
   TextInput,
   StatusBar,
 } from "react-native";
+import { Tag } from "./tag";
 
 export default DoctorCard = ({ doctorDetails }) => {
   return (
@@ -23,7 +24,7 @@ export default DoctorCard = ({ doctorDetails }) => {
         <Text style={styles.doctorSpecialization}>
           {doctorDetails?.speciality}
         </Text>
-        <Text style={styles.activeSymbol}>{doctorDetails?.status}</Text>
+        <Tag text={doctorDetails?.status} type="active" />
       </View>
     </View>
   );

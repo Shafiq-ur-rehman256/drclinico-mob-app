@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Image } from "react-native";
+import { Tag } from "./tag";
 
 export default DoctorInfoCard = ({ selectedDoctor }) => (
   <View style={styles.container}>
@@ -12,7 +13,7 @@ export default DoctorInfoCard = ({ selectedDoctor }) => (
     <View style={styles.docterDetailContainer}>
       <View style={styles.doctorNameRow}>
         <Text style={styles.doctorName}>{selectedDoctor.name}</Text>
-        <Text style={styles.activeSymbol}>{selectedDoctor.status}</Text>
+        <Tag text={selectedDoctor.status} type="active" />
       </View>
 
       <Text style={styles.doctorSpecialization}>
