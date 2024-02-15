@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "10%",
+    paddingTop: "10%",
     rowGap: 15,
   },
 });

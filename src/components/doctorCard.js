@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     color: "black",
     backgroundColor: "#fff",
     borderRadius: 7,
     padding: 15,
-    width: "100%",
+    width: 320,
     columnGap: 20,
     shadowColor: "#000",
     shadowOffset: {
