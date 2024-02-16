@@ -2,6 +2,7 @@ import GetStartedNav from "./getStarted.Navigation";
 import MainNavigation from "./main.Navigation";
 import RegistrationNav from "./registration.Navigation";
 import EmergencyNavigation from "./emergency.Navigation";
+import PatientNaviation from "./patient.Navigation";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -30,6 +31,7 @@ const AppNavigator = () => {
         <Stack.Screen name="RegisterStack" component={RegistrationNav} />
         <Stack.Screen name="MainStack" component={MainNavigation} />
         <Stack.Screen name="EmergencyStack" component={EmergencyNavigation} />
+        <Stack.Screen name="PatientStack" component={PatientNaviation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
