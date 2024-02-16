@@ -39,6 +39,10 @@ export default PatientHome = ({ navigation }) => {
       // Navigating the user to Emergency doctors screen when clicked on Instant Doctor
       navigation.navigate("MainStack", { screen: "main" });
   };
+
+  const donationRouting = () => {
+    navigation.navigate("PatientStack", { screen: "patient_donate" });
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -52,10 +56,12 @@ export default PatientHome = ({ navigation }) => {
           </Text>
         </View>
         <View style={styles.body}>
-          <Image
-            style={styles.image}
-            source={require("../../../assets/foundation.png")}
-          ></Image>
+          <Pressable onPress={() => donationRouting()}>
+            <Image
+              style={styles.image}
+              source={require("../../../assets/foundation.png")}
+            ></Image>
+          </Pressable>
           <View style={styles.menu}>
             {data.map((item) => (
               <Pressable onPress={() => routeTo(item.type)}>
