@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     color: "#2FC1FF",
+    textAlign: "center",
   },
   description: {
     fontSize: 12,

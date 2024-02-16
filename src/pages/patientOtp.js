@@ -11,10 +11,13 @@ import { StatusBar } from "expo-status-bar";
 // import OTPInputView from '@twotalltotems/react-native-otp-input';
 import { PrimaryButton } from "../components/primaryButton";
 
-export default PatientOtp = ({ navigation }) => {
+export default PatientOtp = ({ navigation, route }) => {
+  const { accessControl } = route.params;
+  const access = accessControl;
   const routeTo = () => {
     navigation.navigate("PatientStack", {
       screen: "patient_home",
+      params: { accessControl: access },
     });
   };
 

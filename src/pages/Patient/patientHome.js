@@ -2,10 +2,12 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import PatientMenuItems from "../../components/patientMenuItems";
 
-export default PatientHome = ({ navigation }) => {
+export default PatientHome = ({ navigation, route }) => {
+  const { accessControl } = route.params;
   const data = [
     {
       key: 1,
+      access: "patient",
       type: "instant_doctor",
       title: "Instant Doctor",
       description: "GP, Psychologists & Nutritionists",
@@ -13,6 +15,7 @@ export default PatientHome = ({ navigation }) => {
     },
     {
       key: 2,
+      access: "patient",
       type: "book_appointment",
       title: "Book Appointment",
       description: "Book a doctor for your consultation",
@@ -20,6 +23,7 @@ export default PatientHome = ({ navigation }) => {
     },
     {
       key: 3,
+      access: "patient",
       type: "instant_doctor",
       title: "Instant Doctor",
       description: "GP, Psychologists & Nutritionists",
@@ -27,10 +31,35 @@ export default PatientHome = ({ navigation }) => {
     },
     {
       key: 4,
+      access: "patient",
       type: "book_appointment",
       title: "Book Appointment",
       description: "Book a doctor for your consultation",
       icon: require("../../../assets/stethoscope.png"),
+    },
+    {
+      key: 5,
+      access: "doctor",
+      type: "scheduled_appointment",
+      title: "Scheduled Appointment",
+      description: "Your upcoming appointments",
+      icon: require("../../../assets/perscription.png"),
+    },
+    {
+      key: 6,
+      access: "doctor",
+      type: "waiting_users",
+      title: "Waiting Users",
+      description: "Users waiting for your consultation",
+      icon: require("../../../assets/perscription.png"),
+    },
+    {
+      key: 7,
+      access: "doctor",
+      type: "past_patients",
+      title: "Past Patients",
+      description: "Your past patients",
+      icon: require("../../../assets/perscription.png"),
     },
   ];
 
@@ -63,11 +92,17 @@ export default PatientHome = ({ navigation }) => {
             ></Image>
           </Pressable>
           <View style={styles.menu}>
-            {data.map((item) => (
-              <Pressable onPress={() => routeTo(item.type)}>
-                <PatientMenuItems type={item}></PatientMenuItems>
-              </Pressable>
-            ))}
+            {data
+              .filter((option) => option.access === accessControl)
+              .map((option) => (
+                <Pressable
+                  onPress={() => {
+                    routeTo(option.type);
+                  }}
+                >
+                  <PatientMenuItems type={option}></PatientMenuItems>
+                </Pressable>
+              ))}
           </View>
         </View>
       </View>
