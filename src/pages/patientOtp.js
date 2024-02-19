@@ -15,8 +15,8 @@ export default PatientOtp = ({ navigation, route }) => {
   const { accessControl } = route.params;
   const access = accessControl;
   const routeTo = () => {
-    navigation.navigate("PatientStack", {
-      screen: "patient_home",
+    navigation.navigate("MainStack", {
+      screen: "main",
       params: { accessControl: access },
     });
   };
@@ -45,19 +45,6 @@ export default PatientOtp = ({ navigation, route }) => {
           // value={value}
         />
       </View>
-
-      {/* <OTPInputView
-                style={{ width: '80%', height: 50, marginTop: 30 }}
-                pinCount={5}
-                // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
-                // onCodeChanged = {code => { this.setState({code})}}
-                autoFocusOnLoad
-                codeInputFieldStyle={styles.underlineStyleBase}
-                codeInputHighlightStyle={styles.underlineStyleHighLighted}
-                onCodeFilled={(code) => {
-                    console.log(`Code is ${code}, you are good to go!`)
-                }}
-            /> */}
 
       <View style={styles.bottomText}>
         <Text style={styles.part1}>Resend Code?</Text>

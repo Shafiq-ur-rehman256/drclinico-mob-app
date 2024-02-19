@@ -11,6 +11,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Entypo, FontAwesome5 } from "@expo/vector-icons";
 import emergencyHome from "./emergencyHome";
 import inbox from "./inbox";
+import patientHome from "./Patient/patientHome";
+import PatientHome from "./Patient/patientHome";
 
 function HomeScreen() {
   return (
@@ -30,14 +32,16 @@ function SettingsScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export default Mainpage = () => {
-  // Tab.Navigator.defaultProps.screenOptions.headerShown = false;
+export default Mainpage = ({ route }) => {
+  console.log("=====", route);
+  // const { accessControl } = route.params;
 
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarShowLabel: false,
         headerShown: false,
+
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           let Size;
@@ -73,7 +77,10 @@ export default Mainpage = () => {
         tabBarInactiveTintColor: "#2FC1FF",
       })}
     >
-      <Tab.Screen name="Home1" component={emergencyHome} />
+      <Tab.Screen
+        name="Home1"
+        component={() => <PatientHome prop={{ data: route.params }} />}
+      />
       <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen name="Settings1" component={SettingsScreen} />
       <Tab.Screen name="Settings2" component={inbox} />

@@ -2,8 +2,8 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import PatientMenuItems from "../../components/patientMenuItems";
 
-export default PatientHome = ({ navigation, route }) => {
-  const { accessControl } = route.params;
+export default PatientHome = ({ navigation, prop }) => {
+  console.log("======> ", prop);
   const data = [
     {
       key: 1,
@@ -93,7 +93,7 @@ export default PatientHome = ({ navigation, route }) => {
           </Pressable>
           <View style={styles.menu}>
             {data
-              .filter((option) => option.access === accessControl)
+              .filter((option) => option.access === prop.data.accessControl)
               .map((option) => (
                 <Pressable
                   onPress={() => {
