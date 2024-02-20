@@ -3,7 +3,6 @@ import { StatusBar } from "expo-status-bar";
 import PatientMenuItems from "../../components/patientMenuItems";
 
 export default PatientHome = ({ navigation, prop }) => {
-  console.log("======> ", prop);
   const data = [
     {
       key: 1,

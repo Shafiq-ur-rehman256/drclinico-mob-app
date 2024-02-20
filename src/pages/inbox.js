@@ -8,7 +8,8 @@ import {
   TextInput,
 } from "react-native";
 
-export default Inbox = () => {
+export default Inbox = ({ prop }) => {
+  const { accessControl } = prop.data;
   const data = [
     {
       id: 1,
@@ -106,6 +107,77 @@ export default Inbox = () => {
         },
       ],
     },
+    {
+      id: 4,
+      senderInfo: {
+        sender: "patient",
+        name: "Ethan Turner",
+        profileImage: require("../../assets/doc3.png"),
+        specialization: null,
+      },
+      messages: [
+        {
+          id: 1,
+          sender: "doctor",
+          message: "Hello, how are you today?",
+          time: "10:00 AM",
+          status: "read",
+        },
+        {
+          id: 2,
+          sender: "patient",
+          message: "I'm good, thank you for asking!",
+          time: "10:10 AM",
+          status: "unread",
+        },
+      ],
+    },
+    {
+      id: 5,
+      senderInfo: {
+        sender: "patient",
+        name: "Caleb Rodriguez",
+        profileImage: require("../../assets/doc3.png"),
+        specialization: null,
+      },
+      messages: [
+        {
+          id: 1,
+          sender: "doctor",
+          message: "Hello, how are you today?",
+          time: "10:00 AM",
+          status: "read",
+        },
+        {
+          id: 2,
+          sender: "patient",
+          message: "I'm good, thank you for asking!",
+          time: "10:10 AM",
+          status: "read",
+        },
+        {
+          id: 3,
+          sender: "doctor",
+          message: "Did you take your medication today?",
+          time: "10:20 AM",
+          status: "read",
+        },
+        {
+          id: 4,
+          sender: "patient",
+          message: "Yes, I did!",
+          time: "10:20 AM",
+          status: "read",
+        },
+        {
+          id: 5,
+          sender: "patient",
+          message: "But I'm feeling a bit dizzy",
+          time: "10:20 AM",
+          status: "read",
+        },
+      ],
+    },
   ];
   return (
     <View style={styles.container}>
@@ -113,19 +185,21 @@ export default Inbox = () => {
         <Text style={styles.heading}>Chats</Text>
       </View>
       <View style={styles.body}>
-        {data.map((chat) => {
-          return (
-            <View style={styles.chatBox}>
-              <Pressable
-                onPress={() => {
-                  routeTo("MessageScreen", { message: chat });
-                }}
-              >
-                <ChatCard chat={chat}></ChatCard>
-              </Pressable>
-            </View>
-          );
-        })}
+        {data
+          .filter((chat) => chat.senderInfo.sender !== accessControl)
+          .map((chat) => {
+            return (
+              <View style={styles.chatBox}>
+                <Pressable
+                  onPress={() => {
+                    routeTo("MessageScreen", { message: chat });
+                  }}
+                >
+                  <ChatCard chat={chat}></ChatCard>
+                </Pressable>
+              </View>
+            );
+          })}
       </View>
       <StatusBar backgroundColor="#fff"></StatusBar>
     </View>
@@ -148,9 +222,11 @@ export const ChatCard = ({ chat }) => {
         </View>
         <View style={styles.infoBody}>
           <Text style={styles.senderName}>{chat.senderInfo.name}</Text>
-          <Text style={styles.specialization}>
-            {chat.senderInfo.specialization}
-          </Text>
+          {chat.senderInfo.specialization !== null && (
+            <Text style={styles.specialization}>
+              {chat.senderInfo.specialization}
+            </Text>
+          )}
           <Text
             style={
               lastMessage.status === "unread"
@@ -166,7 +242,15 @@ export const ChatCard = ({ chat }) => {
       </View>
       <View style={styles.timeAndLength}>
         <View>
-          <Text style={styles.time}>{lastMessage.time.slice(0, -3)}</Text>
+          <Text
+            style={
+              chat.senderInfo.sender === "doctor"
+                ? styles.time
+                : styles.timeDoctor
+            }
+          >
+            {lastMessage.time.slice(0, -3)}
+          </Text>
         </View>
         {unreadMessagesLength > 0 && (
           <Text style={styles.messageslength}>{unreadMessagesLength}</Text>
@@ -251,6 +335,12 @@ const styles = StyleSheet.create({
     textAlign: "left",
     color: "#A7A6A5",
     marginBottom: 23,
+  },
+  timeDoctor: {
+    fontFamily: "Gilroy-SemiBold",
+    fontSize: 14,
+    textAlign: "left",
+    color: "#A7A6A5",
   },
   messageslength: {
     fontFamily: "Gilroy-SemiBold",

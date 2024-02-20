@@ -10,9 +10,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Entypo, FontAwesome5 } from "@expo/vector-icons";
 import emergencyHome from "./emergencyHome";
-import inbox from "./inbox";
 import patientHome from "./Patient/patientHome";
 import PatientHome from "./Patient/patientHome";
+import Inbox from "./inbox";
 
 function HomeScreen() {
   return (
@@ -83,7 +83,10 @@ export default Mainpage = ({ route }) => {
       />
       <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen name="Settings1" component={SettingsScreen} />
-      <Tab.Screen name="Settings2" component={inbox} />
+      <Tab.Screen
+        name="Settings2"
+        component={() => <Inbox prop={{ data: route.params }} />}
+      />
       <Tab.Screen name="Settings3" component={SettingsScreen} />
     </Tab.Navigator>
   );
