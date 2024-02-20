@@ -79,7 +79,9 @@ export default Mainpage = ({ route }) => {
     >
       <Tab.Screen
         name="Home1"
-        component={() => <PatientHome prop={{ data: route.params }} />}
+        component={(props) => (
+          <PatientHome {...props} prop={{ data: route.params }} />
+        )}
       />
       <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen name="Settings1" component={SettingsScreen} />

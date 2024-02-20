@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import PatientMenuItems from "../../components/patientMenuItems";
 
 export default PatientHome = ({ navigation, prop }) => {
+  console.log("=====", prop);
   const data = [
     {
       key: 1,
@@ -65,7 +66,7 @@ export default PatientHome = ({ navigation, prop }) => {
   const routeTo = (type) => {
     if (type === "instant_doctor")
       // Navigating the user to Emergency doctors screen when clicked on Instant Doctor
-      navigation.navigate("MainStack", { screen: "main" });
+      navigation.navigate("EmergencyStack", { screen: "emergency_home" });
   };
 
   const donationRouting = () => {
