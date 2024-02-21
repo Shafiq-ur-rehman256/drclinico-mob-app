@@ -13,6 +13,7 @@ import emergencyHome from "./emergencyHome";
 import patientHome from "./Patient/patientHome";
 import PatientHome from "./Patient/patientHome";
 import Inbox from "./inbox";
+import UpdateProfile from "./updateProfile";
 
 function HomeScreen() {
   return (
@@ -89,7 +90,10 @@ export default Mainpage = ({ route }) => {
         name="Settings2"
         component={() => <Inbox prop={{ data: route.params }} />}
       />
-      <Tab.Screen name="Settings3" component={SettingsScreen} />
+      <Tab.Screen
+        name="Settings3"
+        component={() => <UpdateProfile prop={{ data: route.params }} />}
+      />
     </Tab.Navigator>
   );
 };
