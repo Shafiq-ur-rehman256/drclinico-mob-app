@@ -67,6 +67,22 @@ export default PatientHome = ({ navigation, prop }) => {
     if (type === "instant_doctor")
       // Navigating the user to Emergency doctors screen when clicked on Instant Doctor
       navigation.navigate("EmergencyStack", { screen: "emergency_home" });
+    if (type === "scheduled_appointment") {
+      navigation.navigate("DoctorStack", {
+        screen: "doctor_menu",
+        params: { from: "scheduled_appointments" },
+      });
+    }
+    if (type === "waiting_users")
+      navigation.navigate("DoctorStack", {
+        screen: "doctor_menu",
+        params: { from: "waiting_users" },
+      });
+    if (type === "past_patients")
+      navigation.navigate("DoctorStack", {
+        screen: "doctor_menu",
+        params: { from: "past_patients" },
+      });
   };
 
   const donationRouting = () => {
