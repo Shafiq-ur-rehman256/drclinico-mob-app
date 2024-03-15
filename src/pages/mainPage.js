@@ -1,19 +1,11 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Pressable,
-  TextInput,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Entypo, FontAwesome5 } from "@expo/vector-icons";
-import emergencyHome from "./emergencyHome";
-import patientHome from "./Patient/patientHome";
+import { FontAwesome5 } from "@expo/vector-icons";
 import PatientHome from "./Patient/patientHome";
 import Inbox from "./inbox";
 import UpdateProfile from "./updateProfile";
+import Prescription from "./prescription";
 
 function HomeScreen() {
   return (
@@ -84,7 +76,10 @@ export default Mainpage = ({ route }) => {
           <PatientHome {...props} prop={{ data: route.params }} />
         )}
       />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="Settings"
+        component={() => <Prescription prop={{ data: route.params }} />}
+      />
       <Tab.Screen name="Settings1" component={SettingsScreen} />
       <Tab.Screen
         name="Settings2"

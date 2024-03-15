@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export const Tag = ({ text, type }) => {
+export const Tag = ({ text, type, customCss }) => {
   return type === "active" ? (
     <View>
-      <Text style={styles.activeSymbol}>{text}</Text>
+      <Text style={customCss ? customCss : styles.activeSymbol}>{text}</Text>
     </View>
   ) : (
     <View>
-      <Text style={styles.inactiveSymbol}>{text}</Text>
+      <Text style={customCss ? customCss : styles.inactiveSymbol}>{text}</Text>
     </View>
   );
 };

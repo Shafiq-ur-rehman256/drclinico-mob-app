@@ -1,9 +1,14 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import PatientMenuItems from "../../components/patientMenuItems";
+import { Tag } from "../../components/tag";
+import SimpleModal from "../../components/modal";
 
 export default PatientHome = ({ navigation, prop }) => {
-  console.log("=====", prop);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [hasModalBeenShown, setHasModalBeenShown] = useState(false);
+
   const data = [
     {
       key: 1,
@@ -67,13 +72,103 @@ export default PatientHome = ({ navigation, prop }) => {
     if (type === "instant_doctor")
       // Navigating the user to Emergency doctors screen when clicked on Instant Doctor
       navigation.navigate("EmergencyStack", { screen: "emergency_home" });
+    if (type === "scheduled_appointment") {
+      navigation.navigate("DoctorStack", {
+        screen: "doctor_menu",
+        params: { from: "scheduled_appointments" },
+      });
+    }
+    if (type === "waiting_users")
+      navigation.navigate("DoctorStack", {
+        screen: "doctor_menu",
+        params: { from: "waiting_users" },
+      });
+    if (type === "past_patients")
+      navigation.navigate("DoctorStack", {
+        screen: "doctor_menu",
+        params: { from: "past_patients" },
+      });
   };
+
+  const showModal = () => {
+    if (prop.data.accessControl === "doctor" && !hasModalBeenShown) {
+      setTimeout(() => {
+        setModalVisible(true);
+        setHasModalBeenShown(true);
+      }, 2000);
+    }
+  };
+
+  //Uncomment the line below to test the modal
+  // showModal();
 
   const donationRouting = () => {
     navigation.navigate("PatientStack", { screen: "patient_donate" });
   };
+
   return (
     <View style={styles.container}>
+      <View style={styles.modal}>
+        <SimpleModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          children={
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.ptName}>Ethan Turner</Text>
+                <Text style={styles.modalDesc}>
+                  Pellentesque placerat arcu in risus facilisis, sed laoreet
+                  eros laoreet.
+                </Text>
+                <View style={styles.buttonsList}>
+                  <View style={styles.firstRow}>
+                    <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                      <Tag
+                        text="Accept"
+                        type="active"
+                        customCss={styles.acceptBtn}
+                      />
+                    </Pressable>
+                    <View style={{ width: 20 }}></View>
+                    <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                      <Tag
+                        text="Decline"
+                        type="inactive"
+                        customCss={styles.declineBtn}
+                      />
+                    </Pressable>
+                  </View>
+                  <View style={styles.secondRow}>
+                    <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                      <Tag
+                        text="Wait 5 min"
+                        type="inactive"
+                        customCss={styles.fiveMin}
+                      />
+                    </Pressable>
+                    <View style={{ width: 10 }}></View>
+                    <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                      <Tag
+                        text="Wait 10 min"
+                        type="inactive"
+                        customCss={styles.fiveMin}
+                      />
+                    </Pressable>
+                    <View style={{ width: 10 }}></View>
+                    <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                      <Tag
+                        text="Wait 15 min"
+                        type="inactive"
+                        customCss={styles.fiveMin}
+                      />
+                    </Pressable>
+                  </View>
+                </View>
+              </View>
+            </View>
+          }
+        />
+      </View>
       <View style={styles.header}>
         <View style={styles.heading}>
           <Text style={styles.mainHeading}>Welcome Back, Anonymus!</Text>
@@ -170,5 +265,100 @@ const styles = StyleSheet.create({
     columnGap: 20,
     marginLeft: 10,
     rowGap: 20,
+  },
+  modal: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 20,
+    width: 20,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  ptName: {
+    fontFamily: "Gilroy-SemiBold",
+    fontSize: 22,
+    textAlign: "left",
+    marginBottom: 15,
+  },
+  modalDesc: {
+    color: "#A7A6A5",
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 15,
+  },
+  buttonsList: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+  },
+  firstRow: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  acceptBtn: {
+    color: "#0EBE7F",
+    backgroundColor: "#daf5eb",
+    width: 150,
+    textAlign: "center",
+    height: 30,
+    borderRadius: 5,
+    paddingTop: 4,
+    fontSize: 16,
+  },
+  declineBtn: {
+    color: "#FF5A5F",
+    backgroundColor: "#f8d7da",
+    width: 70,
+    textAlign: "center",
+    height: 30,
+    paddingTop: 4,
+    fontSize: 14,
+    borderRadius: 5,
+  },
+  fiveMin: {
+    color: "#2FC1FF",
+    backgroundColor: "#e6f8ff",
+    width: 90,
+    textAlign: "center",
+    height: 30,
+    paddingTop: 4,
+    fontSize: 14,
+    borderRadius: 5,
+  },
+  secondRow: {
+    marginTop: 15,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
