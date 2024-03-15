@@ -7,9 +7,26 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
+import { useState } from "react";
+import SimpleModal from "../components/modal";
+import { Tag } from "../components/tag";
 
 export default Inbox = ({ prop }) => {
   const { accessControl } = prop.data;
+  const [modalVisible, setModalVisible] = useState(false);
+  const [hasModalBeenShown, setHasModalBeenShown] = useState(false);
+
+  const showModal = () => {
+    if (!hasModalBeenShown) {
+      setTimeout(() => {
+        setModalVisible(true);
+        setHasModalBeenShown(true);
+      }, 2000);
+    }
+  };
+
+  //Uncomment the line below to test the modal
+  // showModal();
   const data = [
     {
       id: 1,
@@ -191,15 +208,88 @@ export default Inbox = ({ prop }) => {
             return (
               <View style={styles.chatBox}>
                 <Pressable
-                  onPress={() => {
-                    routeTo("MessageScreen", { message: chat });
-                  }}
+                // onPress={() => {
+                //   routeTo("MessageScreen", { message: chat });
+                // }}
                 >
                   <ChatCard chat={chat}></ChatCard>
                 </Pressable>
               </View>
             );
           })}
+      </View>
+      <View>
+        <SimpleModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          children={
+            <View style={styles.modalView}>
+              <Text style={styles.modalHeading}>Chat Review</Text>
+              <Text style={styles.modalDesc}>
+                How was your chat with Ethan Turner?
+              </Text>
+              <View style={styles.reviewStars}>
+                <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                  <Image
+                    source={require("../../assets/reviewStar.png")}
+                    style={styles.star}
+                  ></Image>
+                </Pressable>
+                <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                  <Image
+                    source={require("../../assets/reviewStar.png")}
+                    style={styles.star}
+                  ></Image>
+                </Pressable>
+                <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                  <Image
+                    source={require("../../assets/reviewStar.png")}
+                    style={styles.star}
+                  ></Image>
+                </Pressable>
+                <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                  <Image
+                    source={require("../../assets/reviewStar.png")}
+                    style={styles.star}
+                  ></Image>
+                </Pressable>
+                <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                  <Image
+                    source={require("../../assets/reviewStar.png")}
+                    style={styles.star}
+                  ></Image>
+                </Pressable>
+              </View>
+              {accessControl === "doctor" && (
+                <View style={styles.extra}>
+                  <View style={styles.actions}>
+                    <Pressable
+                      onPress={() => {
+                        setModalVisible(!modalVisible);
+                      }}
+                    >
+                      <Tag customCss={styles.blockBtn} text="Block" />
+                    </Pressable>
+                    <View style={{ width: 10 }}></View>
+                    <Pressable
+                      onPress={() => {
+                        setModalVisible(!modalVisible);
+                      }}
+                    >
+                      <Tag customCss={styles.cancelbtn} text="Cancel" />
+                    </Pressable>
+                  </View>
+                  <View style={styles.blockReason}>
+                    <TextInput
+                      style={styles.blockTextInput}
+                      placeholder="Enter block reason here....."
+                    />
+                  </View>
+                </View>
+              )}
+            </View>
+          }
+        />
       </View>
       <StatusBar backgroundColor="#fff"></StatusBar>
     </View>
@@ -263,7 +353,7 @@ export const ChatCard = ({ chat }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f2f2f2", // Change the background color to gray
     padding: 10,
     paddingTop: 30,
   },
@@ -291,7 +381,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "#fcfafa",
+    backgroundColor: "#e8e8e8", // Change the background color to gray
   },
   nameAndMessage: {
     display: "flex",
@@ -365,5 +455,100 @@ const styles = StyleSheet.create({
   },
   chatBox: {
     marginBottom: 10,
+  },
+  modal: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 20,
+    width: 20,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalHeading: {
+    fontFamily: "Gilroy-SemiBold",
+    fontSize: 22,
+    textAlign: "left",
+    marginBottom: 15,
+  },
+  modalDesc: {
+    color: "#A7A6A5",
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 15,
+  },
+  reviewStars: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+  },
+  star: {
+    width: 35,
+    height: 35,
+    marginRight: 10,
+  },
+  actions: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+    padding: 10,
+    gap: 10,
+  },
+  blockBtn: {
+    color: "#FF5A5F",
+    backgroundColor: "#f8d7da",
+    width: 100,
+    textAlign: "center",
+    height: 30,
+    borderRadius: 5,
+    paddingTop: 5,
+  },
+  cancelbtn: {
+    color: "#808080",
+    backgroundColor: "#ededed",
+    width: 100,
+    textAlign: "center",
+    height: 30,
+    borderRadius: 5,
+    paddingTop: 5,
+  },
+  blockReason: {
+    marginTop: 15,
+  },
+  blockTextInput: {
+    width: 280,
+    height: 60,
+    borderColor: "#A7A6A5",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
   },
 });

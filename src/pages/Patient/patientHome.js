@@ -99,7 +99,8 @@ export default PatientHome = ({ navigation, prop }) => {
     }
   };
 
-  showModal();
+  //Uncomment the line below to test the modal
+  // showModal();
 
   const donationRouting = () => {
     navigation.navigate("PatientStack", { screen: "patient_donate" });
