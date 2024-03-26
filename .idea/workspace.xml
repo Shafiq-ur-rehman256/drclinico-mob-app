@@ -5,25 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02ce213a-6090-420d-a889-db84431857b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/Image.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/doc1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/doc2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/doc3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/searchIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/welcomeAvatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/doctorCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/emergencyHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/drclinico-mob-app.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/snackBac.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/api.routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/doctorSignIn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/patientSignIn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/api.doctor..service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/reducers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/primaryButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/primaryButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/app.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/app.Navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/registration.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/registration.Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/doctorRegistration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/doctorRegistration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/getStarted.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/getStarted.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/patientOtp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/patientOtp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/patientRegistration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/patientRegistration.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

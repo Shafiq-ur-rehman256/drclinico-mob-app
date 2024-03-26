@@ -3,19 +3,27 @@ import {
   Text,
   View,
   Image,
-  Pressable,
   TextInput,
+  Pressable
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { PrimaryButton } from "../components/primaryButton";
 import {
   useForm,
   Controller,
-  SubmitErrorHandler,
-  UseFormGetValues,
 } from "react-hook-form";
+import { doctorSignUp } from "../services/api.doctor..service";
+import { setSnackBar } from "../store/reducers";
+import { useDispatch } from 'react-redux'
+import { ErrorMessage } from "@hookform/error-message"
+import { useState, useEffect } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default DoctorRegistration = ({ navigation }) => {
+
+  const [formError, setFormError] = useState({show: true, message: ''})
+  const dispatch = useDispatch()
   const {
     register,
     setValue,
@@ -24,21 +32,38 @@ export default DoctorRegistration = ({ navigation }) => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+
+  useEffect(()=>{
+
+    if (Object.keys(errors).length) {
+      setFormError({show: true, message: 'Please provide all required fields'})
+    }
+
+  }, [errors]);
+
+  console.log("errors =============",errors);
+
+  const onSubmit = async (data) => {
+
+    const { code, msg } = await doctorSignUp(data)
+    if (code == 200) {
+      await AsyncStorage.setItem('doctor_email', data.email)
+      dispatch(setSnackBar({ show: true, message: 'Check your email for Otp' }))
+      routeToOtp()
+    }
+
   };
 
-  // const onError: SubmitErrorHandler<UseFormGetValues> = (errors, e) => {
-  //   return console.log(errors)
-  // }
-
-  routeTo = () => {
-    console.log("run");
+  routeToOtp = () => {
     navigation.navigate("RegisterStack", {
       screen: "patient_otp",
       params: { accessControl: "doctor" },
     });
   };
+
+  routeToLogin = () => {
+    navigation.navigate("RegisterStack", { screen: "doctor_login" });
+  }
 
   return (
     <View style={styles.container}>
@@ -51,6 +76,7 @@ export default DoctorRegistration = ({ navigation }) => {
 
       <View style={styles.heading}>
         <Text style={styles.mainHeading}>Sign Up</Text>
+        {formError.show && <Text style={styles.formError}>{formError.message}</Text>}
       </View>
 
       <View style={styles.form}>
@@ -61,14 +87,14 @@ export default DoctorRegistration = ({ navigation }) => {
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={styles.input}
-                onBlur={onBlur}
+                // onBlur={onBlur}
                 placeholder="Jan Kowalski"
                 onChangeText={(value) => onChange(value)}
                 value={value}
               />
             )}
-            name="fullname"
-            rules={{ required: true }}
+            name="full_name"
+            rules={{ required: 'Full name is required' }}
           />
         </View>
 
@@ -80,7 +106,7 @@ export default DoctorRegistration = ({ navigation }) => {
               <TextInput
                 style={styles.input}
                 placeholder="abc@example.com"
-                onBlur={onBlur}
+                // onBlur={onBlur}
                 onChangeText={(value) => onChange(value)}
                 value={value}
               />
@@ -97,7 +123,7 @@ export default DoctorRegistration = ({ navigation }) => {
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={styles.input}
-                onBlur={onBlur}
+                // onBlur={onBlur}
                 placeholder="xxxx-xxxxx-xxxx-x"
                 onChangeText={(value) => onChange(value)}
                 value={value}
@@ -115,13 +141,13 @@ export default DoctorRegistration = ({ navigation }) => {
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={styles.input}
-                onBlur={onBlur}
+                // onBlur={onBlur}
                 placeholder="111-111-111"
                 onChangeText={(value) => onChange(value)}
                 value={value}
               />
             )}
-            name="phoneNumber"
+            name="phone_number"
             rules={{ required: true }}
           />
         </View>
@@ -134,13 +160,13 @@ export default DoctorRegistration = ({ navigation }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   style={styles.input}
-                  onBlur={onBlur}
+                  // onBlur={onBlur}
                   placeholder="1111"
                   onChangeText={(value) => onChange(value)}
                   value={value}
                 />
               )}
-              name="phoneNumber"
+              name="license_number"
               rules={{ required: true }}
             />
           </View>
@@ -152,13 +178,13 @@ export default DoctorRegistration = ({ navigation }) => {
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   style={styles.input}
-                  onBlur={onBlur}
+                  // onBlur={onBlur}
                   placeholder="cardiologist"
                   onChangeText={(value) => onChange(value)}
                   value={value}
                 />
               )}
-              name="phoneNumber"
+              name="specialization"
               rules={{ required: true }}
             />
           </View>
@@ -171,7 +197,7 @@ export default DoctorRegistration = ({ navigation }) => {
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={styles.input}
-                onBlur={onBlur}
+                // onBlur={onBlur}
                 placeholder="*********"
                 onChangeText={(value) => onChange(value)}
                 value={value}
@@ -182,19 +208,20 @@ export default DoctorRegistration = ({ navigation }) => {
             rules={{ required: true }}
           />
         </View>
+        <View style={styles.bottomBtn}>
+          <PrimaryButton
+            prop={{ text: "Sign Up", onPress: handleSubmit(onSubmit) }}
+          ></PrimaryButton>
+        </View>
       </View>
 
-      <View style={styles.bottomBtn}>
-        <PrimaryButton
-          prop={{ text: "Sign Up", onPress: routeTo }}
-        ></PrimaryButton>
-      </View>
 
       <View style={styles.bottomText}>
         <Text style={styles.part1}>Already have account?</Text>
-        <Text style={styles.part2}>Sign In</Text>
+        <Pressable onPress={routeToLogin}>
+          <Text style={styles.part2}>Sign In</Text>
+        </Pressable>
       </View>
-
       <StatusBar backgroundColor="#fff"></StatusBar>
     </View>
   );
@@ -250,6 +277,9 @@ const styles = StyleSheet.create({
     display: "flex",
     rowGap: 5,
   },
+  formError: {
+    color: '#FF0000'
+  },
   label: {
     color: "#A7A6A5",
     fontSize: 15,
@@ -263,7 +293,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   bottomBtn: {
-    marginTop: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  primaryBtn: {
+    backgroundColor: '#2FC1FF',
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 220,
+    borderRadius: 18
   },
   bottomText: {
     display: "flex",
@@ -272,7 +313,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     columnGap: 5,
     width: "70%",
-    marginTop: 30,
+    marginTop: 20,
   },
   part1: {
     color: "#A7A6A5",

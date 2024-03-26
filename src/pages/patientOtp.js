@@ -10,16 +10,70 @@ import {
 import { StatusBar } from "expo-status-bar";
 // import OTPInputView from '@twotalltotems/react-native-otp-input';
 import { PrimaryButton } from "../components/primaryButton";
+import { docVerifyOtp, verifyOtpPatient } from "../services/api.doctor..service";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useState } from "react";
+import { useDispatch } from 'react-redux'
+import { setSnackBar } from "../store/reducers";
 
 export default PatientOtp = ({ navigation, route }) => {
+
+  const [otp_code, setOtp] = useState('')
+  const dispatch = useDispatch()
   const { accessControl } = route.params;
-  const access = accessControl;
-  const routeTo = () => {
-    navigation.navigate("MainStack", {
-      screen: "main",
-      params: { accessControl: access },
-    });
+
+  const routeToHome = async() => {
+
+    if (accessControl == 'doctor') {
+      
+      const email = await AsyncStorage.getItem('doctor_email');
+
+      const payload = {
+        otp_code: otp_code,
+        email
+      }
+      console.log(payload);
+
+      const {code, msg} = await docVerifyOtp(payload)
+
+      if (code == 200) {
+        dispatch(setSnackBar({ show: true, message: 'Otp sucessfully verified' }))
+        // navigation.navigate("MainStack", {
+        //   screen: "main",
+        //   params: { accessControl: accessControl },
+        // });
+        navigation.navigate("RegisterStack", { screen: "doctor_login" });
+      }
+      
+
+    }else{
+
+      const email = await AsyncStorage.getItem('patient_email');
+
+      const payload = {
+        otp_code: otp_code,
+        email
+      }
+      console.log(payload);
+
+      const {code, msg} = await verifyOtpPatient(payload)
+
+      if (code == 200) {
+        dispatch(setSnackBar({ show: true, message: msg }))
+        // navigation.navigate("MainStack", {
+        //   screen: "main",
+        //   params: { accessControl: accessControl },
+        // });
+        navigation.navigate("RegisterStack", { screen: "patient_login" });
+      }
+
+    }
+
   };
+
+  onChangeOtp = (value) =>{
+    setOtp(value)
+  }
 
   return (
     <View style={styles.container}>
@@ -41,7 +95,7 @@ export default PatientOtp = ({ navigation, route }) => {
           maxLength={5}
           // onBlur={onBlur}
           placeholder="X-X-X-X-X"
-          // onChangeText={value => onChange(value)}
+          onChangeText={value => onChangeOtp(value)}
           // value={value}
         />
       </View>
@@ -53,7 +107,7 @@ export default PatientOtp = ({ navigation, route }) => {
 
       <View style={styles.bottomBtn}>
         <PrimaryButton
-          prop={{ text: "Verify", onPress: routeTo }}
+          prop={{ text: "Verify", onPress: routeToHome }}
         ></PrimaryButton>
       </View>
 

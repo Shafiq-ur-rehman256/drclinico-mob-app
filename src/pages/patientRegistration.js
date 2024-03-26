@@ -14,31 +14,72 @@ import {
   SubmitErrorHandler,
   UseFormGetValues,
 } from "react-hook-form";
+import { registerPatient } from "../services/api.doctor..service";
+import { setSnackBar } from "../store/reducers";
+import { useDispatch } from 'react-redux'
+import { useState } from "react";
+import { useEffect } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default PatientRegistration = ({ navigation }) => {
+
+  const [formError, setFormError] = useState({ show: true, message: '' })
+  const dispatch = useDispatch()
   const {
     register,
     setValue,
     handleSubmit,
     control,
     reset,
+    getValues,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+
+
+  useEffect(() => {
+
+    if (Object.keys(errors).length) {
+      setFormError({ show: true, message: 'Please provide all required fields' })
+      setTimeout(() => {
+        setFormError({ show: false, message: '' })
+      }, 3000);
+    }
+
+  }, [errors]);
+
+  const onSubmit = async (data) => {
     console.log(data);
+    const { code, msg } = await registerPatient(data);
+
+    if (code == 200) {
+
+      await AsyncStorage.setItem('patient_email', data.email)
+      dispatch(setSnackBar({ show: true, message: msg }))
+      navigation.navigate("RegisterStack", {
+        screen: "patient_otp",
+        params: { accessControl: "patient" },
+      });
+
+    } else {
+      dispatch(setSnackBar({ show: true, message: msg }))
+    }
   };
+
+  routeToLogin = () => {
+    navigation.navigate("RegisterStack", { screen: "patient_login" });
+  }
 
   // const onError: SubmitErrorHandler<UseFormGetValues> = (errors, e) => {
   //   return console.log(errors)
   // }
 
-  routeTo = () => {
-    console.log("run");
-    navigation.navigate("RegisterStack", {
-      screen: "patient_otp",
-      params: { accessControl: "patient" },
-    });
-  };
+  // routeTo = () => {
+  //   console.log("run", getValues());
+  //   navigation.navigate("RegisterStack", {
+  //     screen: "patient_otp",
+  //     params: { accessControl: "patient" },
+  //   });
+  // };
 
   return (
     <View style={styles.container}>
@@ -51,6 +92,7 @@ export default PatientRegistration = ({ navigation }) => {
 
       <View style={styles.heading}>
         <Text style={styles.mainHeading}>Sign Up</Text>
+        {formError.show && <Text style={styles.formError}>{formError.message}</Text>}
       </View>
 
       <View style={styles.form}>
@@ -67,7 +109,7 @@ export default PatientRegistration = ({ navigation }) => {
                 value={value}
               />
             )}
-            name="fullname"
+            name="full_name"
             rules={{ required: true }}
           />
         </View>
@@ -121,7 +163,7 @@ export default PatientRegistration = ({ navigation }) => {
                 value={value}
               />
             )}
-            name="phoneNumber"
+            name="phone_number"
             rules={{ required: true }}
           />
         </View>
@@ -144,17 +186,19 @@ export default PatientRegistration = ({ navigation }) => {
             rules={{ required: true }}
           />
         </View>
+        <View style={styles.bottomBtn}>
+          <PrimaryButton
+            prop={{ text: "Sign Up", onPress: handleSubmit(onSubmit) }}
+          ></PrimaryButton>
+        </View>
       </View>
 
-      <View style={styles.bottomBtn}>
-        <PrimaryButton
-          prop={{ text: "Sign Up", onPress: routeTo }}
-        ></PrimaryButton>
-      </View>
 
       <View style={styles.bottomText}>
         <Text style={styles.part1}>Already have account?</Text>
-        <Text style={styles.part2}>Sign In</Text>
+        <Pressable onPress={routeToLogin}>
+          <Text style={styles.part2}>Sign In</Text>
+        </Pressable>
       </View>
 
       <StatusBar backgroundColor="#fff"></StatusBar>
@@ -196,7 +240,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   form: {
-    marginTop: "15%",
+    marginTop: "5%",
     display: "flex",
     width: "80%",
     rowGap: 15,
@@ -204,6 +248,11 @@ const styles = StyleSheet.create({
   formElement: {
     display: "flex",
     rowGap: 5,
+    // justifyContent: 'center',
+    // alignItems: 'center'
+  },
+  formError: {
+    color: '#FF0000'
   },
   label: {
     color: "#A7A6A5",
@@ -218,7 +267,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   bottomBtn: {
-    marginTop: 50,
+    marginTop: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   bottomText: {
     display: "flex",
@@ -227,7 +279,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     columnGap: 5,
     width: "70%",
-    marginTop: 30,
+    marginTop: 20,
   },
   part1: {
     color: "#A7A6A5",

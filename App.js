@@ -1,11 +1,14 @@
 import React from 'react';
 import AppNavigator from './src/layouts/app.Navigation';
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import { StyleSheet, Text, View, Image, Pressable, TextInput, StatusBar } from 'react-native';
+import { View } from 'react-native';
+import { Provider } from 'react-redux'
+import store from './src/store/store';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { CustomSnackBar } from './src/components/snackBac';
 
-export default function  App() {
-  
+export default function App() {
+
   const [fontsLoaded] = useFonts({
     'Gilroy-SemiBold': require('./assets/fonts/gilroy/Gilroy-SemiBold.ttf'),
     'Gilroy-Bold': require('./assets/fonts/gilroy/Gilroy-Bold.ttf'),
@@ -21,9 +24,13 @@ export default function  App() {
   }
 
   return (
-     
+    <Provider store={store}>
+      <SafeAreaProvider>
         <AppNavigator ></AppNavigator>
+        <CustomSnackBar></CustomSnackBar>
+      </SafeAreaProvider>
+    </Provider>
 
-    
+
   );
 }

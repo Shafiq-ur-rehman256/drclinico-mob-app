@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { PrimaryButton } from '../components/primaryButton';
+import {useSelector} from 'react-redux'
 // import { Image } from 'expo-image';
 
 const blurhash =
@@ -8,7 +9,7 @@ const blurhash =
 
 
 export default function GetStarted({ navigation }) {
-
+    
     routeTo = () => {
 
         console.log("run");
