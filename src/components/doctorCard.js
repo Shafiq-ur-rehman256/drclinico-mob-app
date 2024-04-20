@@ -20,9 +20,9 @@ export default DoctorCard = ({ doctorDetails }) => {
       </View>
 
       <View style={styles.docterDetailContainer}>
-        <Text style={styles.doctorName}>{doctorDetails?.name}</Text>
+        <Text style={styles.doctorName}>Dr. {doctorDetails?.full_name}</Text>
         <Text style={styles.doctorSpecialization}>
-          {doctorDetails?.speciality}
+          {doctorDetails?.specialization}
         </Text>
         <Tag text={doctorDetails?.status} type="active" />
       </View>

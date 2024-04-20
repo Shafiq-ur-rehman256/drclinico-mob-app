@@ -2,7 +2,7 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 
 
-export const PrimaryButton = ({prop}) => {
+export const PrimaryButton = ({navigation,prop}) => {
     // const { text, onPress } = prop;
 
     return (

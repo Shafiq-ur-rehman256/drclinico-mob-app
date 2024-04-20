@@ -12,12 +12,12 @@ export default DoctorInfoCard = ({ selectedDoctor }) => (
 
     <View style={styles.docterDetailContainer}>
       <View style={styles.doctorNameRow}>
-        <Text style={styles.doctorName}>{selectedDoctor.name}</Text>
+        <Text style={styles.doctorName}>{selectedDoctor.full_name}</Text>
         <Tag text={selectedDoctor.status} type="active" />
       </View>
 
       <Text style={styles.doctorSpecialization}>
-        {selectedDoctor.speciality}
+        {selectedDoctor.specialization}
       </Text>
     </View>
   </View>

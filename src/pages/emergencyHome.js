@@ -8,50 +8,26 @@ import {
   StatusBar,
 } from "react-native";
 import DoctorCard from "../components/doctorCard";
+import { useEffect, useState } from "react";
+import { activeDoctorList } from "../services/api.doctor..service";
 
 export default EmergencyHome = ({ navigation }) => {
-  const doctors = [
-    {
-      id: 1,
-      name: "Dr. Johnn Doe",
-      speciality: "Cardiologist",
-      rating: 4.5,
-      reviews: 20,
-      status: "Active",
-      aboutMe:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc. Nulla facilisi. Sed auctor, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc.",
-    },
-    {
-      id: 2,
-      name: "Dr. Jane Smith",
-      speciality: "Dermatologist",
-      rating: 4.2,
-      reviews: 15,
-      status: "Active",
-      aboutMe:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc. Nulla facilisi. Sed auctor, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc.",
-    },
-    {
-      id: 3,
-      name: "Dr. John Smith",
-      speciality: "Orthopedic",
-      rating: 4.8,
-      reviews: 25,
-      status: "Active",
-      aboutMe:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc. Nulla facilisi. Sed auctor, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc.",
-    },
-    {
-      id: 4,
-      name: "Dr. Aly Williams",
-      speciality: "Pediatrician",
-      rating: 4.6,
-      reviews: 18,
-      status: "Active",
-      aboutMe:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc. Nulla facilisi. Sed auctor, nunc id aliquet tincidunt, mauris nisl ultrices nunc, id tincidunt nisl nisl a nunc.",
-    },
-  ];
+  const [doctors, setDoctors] = useState([]);
+  
+
+  
+  const getActiveDocList = async() =>{
+    
+    const response = await activeDoctorList()
+    return response.data;
+    
+  }
+  
+  useEffect(async()=>{
+    const list = await getActiveDocList()
+    setDoctors(list)
+    
+  },[])
 
   const routeTo = (doctorId) => {
     const selectedDoctorData = doctors.find((doctor) => doctor.id === doctorId);

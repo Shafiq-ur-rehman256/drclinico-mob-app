@@ -1,9 +1,22 @@
 import axios from 'axios';
 import { config } from '../config/config';
 import { api_routes } from '../config/api.routes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 axios.defaults.baseURL = config.baseUrl;
 
+
+const getPatientAuthHeaders = async() => {
+
+    const auth_token = await AsyncStorage.getItem('patient_auth')
+
+    const headers = {
+        'Authorization': auth_token
+    }
+
+    return headers;
+
+}
 
 // DOCTOR-START
 
@@ -52,6 +65,24 @@ export const doctorAuthenticate = async(payload) => {
         console.log("====================================",response.data);
         return response.data;
         
+    } catch (error) {
+        console.log(error);
+        const Error = {
+            code: 0,
+            message: error
+        }
+        return Error;
+    }
+}
+
+export const activeDoctorList = async() => {
+    try {
+        
+        const headers = await getPatientAuthHeaders()
+        let response = await axios.get(api_routes.doctor.active_list, {headers: headers});
+        console.log("====================================",response.data);
+        return response.data;
+
     } catch (error) {
         console.log(error);
         const Error = {

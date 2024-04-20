@@ -32,7 +32,7 @@ export default DoctorInfo = ({ route }) => {
             <Text style={styles.aboutMeHeadingText}>About Me</Text>
           </View>
           <View>
-            <Text style={styles.description}>{selectedDoctor.aboutMe}</Text>
+            <Text style={styles.description}>{'Notice how componentDidMount and componentWillUnmount need to mirror each other. Lifecycle methods force us to split this logic even though conceptually code in both of them is related to the same effect.'}</Text>
           </View>
         </View>
         <View style={styles.bottomBtn}>

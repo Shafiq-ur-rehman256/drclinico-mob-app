@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { doctorAuthenticate, patientAuthenticate } from "../services/api.doctor..service";
 import { useDispatch } from 'react-redux'
 import { setSnackBar } from "../store/reducers";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default PatientSignIn = ({ navigation }) => {
 
@@ -38,10 +39,10 @@ export default PatientSignIn = ({ navigation }) => {
 
     const onSubmit = async (data) => {
         console.log("pppppppppppppp",data);
-        const { code, msg } = await patientAuthenticate(data);
+        const { code, msg, data:Data } = await patientAuthenticate(data);
 
         if (code == 200) {
-
+            await AsyncStorage.setItem('patient_auth', Data.auth_token)
             dispatch(setSnackBar({ show: true, message: msg }))
             navigation.navigate("MainStack", {
               screen: "main",

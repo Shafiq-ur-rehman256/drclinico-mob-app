@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { PrimaryButton } from "../components/primaryButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default UpdateProfile = ({ navigation, prop }) => {
   const {
@@ -15,6 +16,14 @@ export default UpdateProfile = ({ navigation, prop }) => {
     formState: { errors },
   } = useForm();
   const { accessControl } = prop.data;
+
+  const logout = async()=>{
+    await AsyncStorage.removeItem('patient_auth');
+    // navigation.navigate("HomeStack", {
+    //   screen: "home",
+    // });
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -96,7 +105,7 @@ export default UpdateProfile = ({ navigation, prop }) => {
             />
           </View>
           <View style={styles.bottomBtn}>
-            <PrimaryButton prop={{ text: "Continue" }}></PrimaryButton>
+            <PrimaryButton prop={{ text: "Logout", onPress: logout }}></PrimaryButton>
           </View>
         </View>
       </View>

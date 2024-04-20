@@ -32,7 +32,7 @@ export default Inbox = ({ prop }) => {
       id: 1,
       senderInfo: {
         sender: "doctor",
-        name: "Dr. John Doe",
+        name: "Dr. John Doee",
         profileImage: require("../../assets/doc2.png"),
         specialization: "Cardiologist",
       },

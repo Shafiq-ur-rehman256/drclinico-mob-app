@@ -3,7 +3,8 @@ export const api_routes = {
     doctor: {
         sign_up: '/doctor/signup',
         verifyOtp: '/doctor/verify-otp',
-        sign_in: '/doctor/authenticate'
+        sign_in: '/doctor/authenticate',
+        active_list: '/doctor/active/list'
     },
     patient: {
         sign_up: '/patient/signup',
