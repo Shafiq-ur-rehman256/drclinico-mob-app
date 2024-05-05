@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { doctorAuthenticate } from "../services/api.doctor..service";
 import { useDispatch } from 'react-redux'
 import { setSnackBar } from "../store/reducers";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default DoctorSignIn = ({ navigation }) => {
 
@@ -38,10 +39,13 @@ export default DoctorSignIn = ({ navigation }) => {
 
     const onSubmit = async (data) => {
         // console.log(data);
-        const { code, msg } = await doctorAuthenticate(data);
-        console.log(msg);
+        const { code, msg, data:Data } = await doctorAuthenticate(data);
         if (code == 200) {
-
+            const payload = {
+                accessControl: 'doctor',
+                token: Data.auth_token
+            }
+            await AsyncStorage.setItem('user', JSON.stringify(payload))
             dispatch(setSnackBar({ show: true, message: msg }))
             navigation.navigate("MainStack", {
               screen: "main",

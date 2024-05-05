@@ -11,8 +11,8 @@ import { useState } from "react";
 import SimpleModal from "../components/modal";
 import { Tag } from "../components/tag";
 
-export default Inbox = ({ prop }) => {
-  const { accessControl } = prop.data;
+export default Inbox = ({ route }) => {
+  const { accessControl } = route.params.data;;
   const [modalVisible, setModalVisible] = useState(false);
   const [hasModalBeenShown, setHasModalBeenShown] = useState(false);
 
@@ -204,9 +204,9 @@ export default Inbox = ({ prop }) => {
       <View style={styles.body}>
         {data
           .filter((chat) => chat.senderInfo.sender !== accessControl)
-          .map((chat) => {
+          .map((chat, ind) => {
             return (
-              <View style={styles.chatBox}>
+              <View style={styles.chatBox} key={ind}>
                 <Pressable
                 // onPress={() => {
                 //   routeTo("MessageScreen", { message: chat });

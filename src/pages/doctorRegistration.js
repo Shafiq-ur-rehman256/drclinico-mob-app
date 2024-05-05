@@ -4,7 +4,9 @@ import {
   View,
   Image,
   TextInput,
-  Pressable
+  Pressable,
+  ScrollView,
+  KeyboardAvoidingView
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { PrimaryButton } from "../components/primaryButton";
@@ -67,6 +69,7 @@ export default DoctorRegistration = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <ScrollView scrollEnabled={true} contentContainerStyle={{ alignItems: 'center' }}>
       <View style={styles.logoContainer}>
         <Image
           style={styles.logo}
@@ -222,6 +225,7 @@ export default DoctorRegistration = ({ navigation }) => {
           <Text style={styles.part2}>Sign In</Text>
         </Pressable>
       </View>
+      </ScrollView>
       <StatusBar backgroundColor="#fff"></StatusBar>
     </View>
   );
@@ -263,7 +267,7 @@ const styles = StyleSheet.create({
   form: {
     marginTop: "5%",
     display: "flex",
-    width: "80%",
+    width: "90%",
     rowGap: 10,
   },
   GroupElement: {

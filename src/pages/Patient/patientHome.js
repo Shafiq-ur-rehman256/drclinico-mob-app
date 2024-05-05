@@ -5,7 +5,8 @@ import PatientMenuItems from "../../components/patientMenuItems";
 import { Tag } from "../../components/tag";
 import SimpleModal from "../../components/modal";
 
-export default PatientHome = ({ navigation, prop }) => {
+export default PatientHome = ({ navigation, route }) => {
+  // console.log("========================================================",route);
   const [modalVisible, setModalVisible] = useState(false);
   const [hasModalBeenShown, setHasModalBeenShown] = useState(false);
 
@@ -91,7 +92,7 @@ export default PatientHome = ({ navigation, prop }) => {
   };
 
   const showModal = () => {
-    if (prop.data.accessControl === "doctor" && !hasModalBeenShown) {
+    if (route.params.data.accessControl === "doctor" && !hasModalBeenShown) {
       setTimeout(() => {
         setModalVisible(true);
         setHasModalBeenShown(true);
@@ -188,9 +189,10 @@ export default PatientHome = ({ navigation, prop }) => {
           </Pressable>
           <View style={styles.menu}>
             {data
-              .filter((option) => option.access === prop.data.accessControl)
-              .map((option) => (
+              .filter((option) => option.access === route.params.data.accessControl)
+              .map((option, index) => (
                 <Pressable
+                key={index}
                   onPress={() => {
                     routeTo(option.type);
                   }}

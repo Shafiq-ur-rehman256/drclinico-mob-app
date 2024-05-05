@@ -11,22 +11,34 @@ const Stack = createNativeStackNavigator();
 
 export default function GetStartedNav({ navigation }) {
 
-    const naviageToPatientHome = async() =>{
+    const getFirstOpen = async () => {
+        const firstOpen = await AsyncStorage.getItem('first_open');
+        // console.log("===============================?",firstOpen );
+        if (firstOpen) {
+            navigation.navigate("HomeStack", {
+                screen: "select_registration"
+              });
+        }
+    }
 
-        const patient_auth = await AsyncStorage.getItem('patient_auth')
-        if (patient_auth) {
+    async function autoRedirectHome(){
+
+        const user = JSON.parse(await AsyncStorage.getItem('user'));
+        // console.log(user);
+        if (user?.token) {
             navigation.navigate("MainStack", {
                 screen: "main",
-                params: { accessControl: 'patient' },
+                params: { accessControl: user?.accessControl },
               });
         }
 
     }
 
-    useEffect(async()=>{
-        await naviageToPatientHome()
+    useEffect(()=>{
+        getFirstOpen()
+        autoRedirectHome()
     }, [])
-
+    
     return (
 
   

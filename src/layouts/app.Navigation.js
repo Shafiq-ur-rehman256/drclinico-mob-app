@@ -20,7 +20,8 @@ const Stack = createStackNavigator();
 // };
 
 const AppNavigator = () => {
-  // loadFonts()
+  
+  
 
   return (
     <NavigationContainer>

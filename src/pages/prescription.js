@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 
-export default Prescription = ({ navigation, prop }) => {
-  const { accessControl } = prop.data;
+export default Prescription = ({ navigation, route }) => {
+  console.log("=====================================", route);
+  const { accessControl } = route.params.data;
 
   const data = [
     {
@@ -144,8 +145,8 @@ export default Prescription = ({ navigation, prop }) => {
       <View style={styles.body}>
         {data
           .filter((pres) => pres.from.type !== accessControl)
-          .map((item) => (
-            <PrescriptionCard data={item} />
+          .map((item, ind) => (
+            <PrescriptionCard data={item} key={ind} />
           ))}
       </View>
     </View>
@@ -172,8 +173,8 @@ const PrescriptionCard = ({ data }) => {
         <Text style={styles.dates}>{`${issuedDate} - ${expiresDate}`}</Text>
       </View>
       <View style={styles.medicinesContainer}>
-        {data.medicines.map((medicine) => (
-          <View style={styles.medicine}>
+        {data.medicines.map((medicine, ind) => (
+          <View style={styles.medicine} key={ind}>
             <Text
               style={styles.medicineName}
             >{`${medicine.name.toUpperCase()} - ${medicine.frequency.toUpperCase()}`}</Text>

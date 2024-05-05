@@ -1,7 +1,7 @@
 import React from 'react';
 import AppNavigator from './src/layouts/app.Navigation';
 import { useFonts } from 'expo-font';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { Provider } from 'react-redux'
 import store from './src/store/store';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';

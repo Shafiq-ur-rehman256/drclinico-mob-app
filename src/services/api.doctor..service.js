@@ -18,6 +18,18 @@ const getPatientAuthHeaders = async() => {
 
 }
 
+const getDoctorAuthHeaders = async() => {
+
+    const user = JSON.parse(await AsyncStorage.getItem('user'))
+
+    const headers = {
+        'Authorization': user.token
+    }
+
+    return headers;
+
+}
+
 // DOCTOR-START
 
 export const doctorSignUp = async (payload) => {
@@ -80,6 +92,44 @@ export const activeDoctorList = async() => {
         
         const headers = await getPatientAuthHeaders()
         let response = await axios.get(api_routes.doctor.active_list, {headers: headers});
+        console.log("====================================",response.data);
+        return response.data;
+
+    } catch (error) {
+        console.log(error);
+        const Error = {
+            code: 0,
+            message: error
+        }
+        return Error;
+    }
+}
+
+export const updateAvailableSlot = async(payload) =>{
+    try {
+        
+        const headers = await getDoctorAuthHeaders();
+        console.log();
+        let response = await axios.post(api_routes.doctor.setAvailableSlots, payload, {headers: headers});
+        console.log("====================================",response.data);
+        return response.data;
+
+    } catch (error) {
+        console.log(error);
+        const Error = {
+            code: 0,
+            message: error
+        }
+        return Error;
+    }
+}
+
+export const getAvailableSlot = async() =>{
+    try {
+        
+        const headers = await getDoctorAuthHeaders();
+        console.log("getAvailableSlot", headers);
+        let response = await axios.get(api_routes.doctor.availableSlots, {headers: headers});
         console.log("====================================",response.data);
         return response.data;
 

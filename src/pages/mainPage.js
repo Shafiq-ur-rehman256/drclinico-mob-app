@@ -26,7 +26,7 @@ function SettingsScreen() {
 const Tab = createBottomTabNavigator();
 
 export default Mainpage = ({ route }) => {
-  console.log("=====", route);
+  // console.log("=====runnnnnnnn", route);
   // const { accessControl } = route.params;
 
   return (
@@ -38,8 +38,8 @@ export default Mainpage = ({ route }) => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           let Size;
-          console.log(route);
-          console.log(color, size);
+          // console.log(route);
+          // console.log(color, size);
           if (route.name === "Home1") {
             iconName = focused ? "ios-home" : "ios-home-outline";
             Size = size;
@@ -72,22 +72,24 @@ export default Mainpage = ({ route }) => {
     >
       <Tab.Screen
         name="Home1"
-        component={(props) => (
-          <PatientHome {...props} prop={{ data: route.params }} />
-        )}
+        component={PatientHome}
+        initialParams={{ data: route.params }}
       />
       <Tab.Screen
         name="Settings"
-        component={() => <Prescription prop={{ data: route.params }} />}
+        component={Prescription}
+        initialParams={{ data: route.params }}
       />
       <Tab.Screen name="Settings1" component={SettingsScreen} />
       <Tab.Screen
         name="Settings2"
-        component={() => <Inbox prop={{ data: route.params }} />}
+        component={Inbox}
+        initialParams={{ data: route.params }}
       />
       <Tab.Screen
         name="Settings3"
-        component={() => <UpdateProfile prop={{ data: route.params }} />}
+        component={UpdateProfile}
+        initialParams={{ data: route.params}}
       />
     </Tab.Navigator>
   );
