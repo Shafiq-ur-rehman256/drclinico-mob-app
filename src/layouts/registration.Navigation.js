@@ -1,10 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import patientRegistration from '../pages/patientRegistration';
-import patientOtp from '../pages/patientOtp';
-import doctorRegistration from '../pages/doctorRegistration';
-import doctorSignIn from '../pages/doctorSignIn';
-import patientSignIn from '../pages/patientSignIn';
+import patientRegistration from '../pages/Patient/patientRegistration';
+import patientOtp from '../pages/Patient/patientOtp';
+import doctorRegistration from '../pages/Doctor/doctorRegistration';
+import doctorSignIn from '../pages/Doctor/doctorSignIn';
+import patientSignIn from '../pages/Patient/patientSignIn';
 
 
 const Stack = createNativeStackNavigator();

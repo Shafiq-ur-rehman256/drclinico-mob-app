@@ -7,13 +7,13 @@ import {
     TextInput,
     Pressable,
 } from "react-native";
-import { PrimaryButton } from "../components/primaryButton";
+import { PrimaryButton } from "../../components/primaryButton";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { useEffect } from "react";
-import { doctorAuthenticate } from "../services/api.doctor..service";
+import { doctorAuthenticate } from "../../services/api.doctor..service";
 import { useDispatch } from 'react-redux'
-import { setSnackBar } from "../store/reducers";
+import { setSnackBar } from "../../store/reducers";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default DoctorSignIn = ({ navigation }) => {
@@ -63,7 +63,7 @@ export default DoctorSignIn = ({ navigation }) => {
             <View style={styles.logoContainer}>
                 <Image
                     style={styles.logo}
-                    source={require("../../assets/drlogo.png")}
+                    source={require("../../../assets/drlogo.png")}
                 ></Image>
             </View>
 

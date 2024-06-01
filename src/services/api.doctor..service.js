@@ -8,10 +8,10 @@ axios.defaults.baseURL = config.baseUrl;
 
 const getPatientAuthHeaders = async() => {
 
-    const auth_token = await AsyncStorage.getItem('patient_auth')
+    const user = JSON.parse(await AsyncStorage.getItem('user'))
 
     const headers = {
-        'Authorization': auth_token
+        'Authorization': user.token
     }
 
     return headers;
@@ -200,5 +200,42 @@ export const patientAuthenticate = async(payload) => {
         return Error;
     }
 }
+
+export const allDoctorListForPatient = async() => {
+    try {
+        
+        const headers = await getPatientAuthHeaders()
+        let response = await axios.get(api_routes.appointments.patient_doctors, {headers: headers});
+        return response.data;
+        
+
+    } catch (error) {
+        const Error = {
+            code: 0,
+            msg: error.response.data.message
+        }
+        return Error;
+    }
+}
+
+export const getDotorAvailiblitySlots = async(doctor_id) => {
+    try {
+        
+        const headers = await getPatientAuthHeaders()
+        let response = await axios.get(`${api_routes.appointments.doctor_slots}/${doctor_id}`, {headers: headers});
+        return response.data;
+        
+
+    } catch (error) {
+        const Error = {
+            code: 0,
+            msg: error.response.data.message
+        }
+        return Error;
+    }
+}
+
+
+
 
 // PATIENT-END

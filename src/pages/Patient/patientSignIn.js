@@ -7,13 +7,13 @@ import {
     TextInput,
     Pressable,
 } from "react-native";
-import { PrimaryButton } from "../components/primaryButton";
+import { PrimaryButton } from "../../components/primaryButton";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { useEffect } from "react";
-import { doctorAuthenticate, patientAuthenticate } from "../services/api.doctor..service";
+import { doctorAuthenticate, patientAuthenticate } from "../../services/api.doctor..service";
 import { useDispatch } from 'react-redux'
-import { setSnackBar } from "../store/reducers";
+import { setSnackBar } from "../../store/reducers";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default PatientSignIn = ({ navigation }) => {
@@ -43,6 +43,12 @@ export default PatientSignIn = ({ navigation }) => {
 
         if (code == 200) {
             await AsyncStorage.setItem('patient_auth', Data.auth_token)
+            const payload = {
+                accessControl: 'patient',
+                token: Data.auth_token,
+                ...Data
+            }
+            await AsyncStorage.setItem('user', JSON.stringify(payload))
             dispatch(setSnackBar({ show: true, message: msg }))
             navigation.navigate("MainStack", {
               screen: "main",
@@ -62,7 +68,7 @@ export default PatientSignIn = ({ navigation }) => {
             <View style={styles.logoContainer}>
                 <Image
                     style={styles.logo}
-                    source={require("../../assets/drlogo.png")}
+                    source={require("../../../assets/drlogo.png")}
                 ></Image>
             </View>
 

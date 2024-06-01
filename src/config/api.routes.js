@@ -12,6 +12,11 @@ export const api_routes = {
         sign_up: '/patient/signup',
         verifyOtp: '/patient/verify-otp',
         sign_in: '/patient/authenticate'
+    },
+
+    appointments: {
+        patient_doctors: '/appointment/patient/doctor/list',
+        doctor_slots: '/appointment/available_slots'
     }
 
 

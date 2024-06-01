@@ -20,22 +20,6 @@ export default PatientHome = ({ navigation, route }) => {
       icon: require("../../../assets/perscription.png"),
     },
     {
-      key: 2,
-      access: "patient",
-      type: "book_appointment",
-      title: "Book Appointment",
-      description: "Book a doctor for your consultation",
-      icon: require("../../../assets/stethoscope.png"),
-    },
-    {
-      key: 3,
-      access: "patient",
-      type: "instant_doctor",
-      title: "Instant Doctor",
-      description: "GP, Psychologists & Nutritionists",
-      icon: require("../../../assets/perscription.png"),
-    },
-    {
       key: 4,
       access: "patient",
       type: "book_appointment",
@@ -73,6 +57,11 @@ export default PatientHome = ({ navigation, route }) => {
     if (type === "instant_doctor")
       // Navigating the user to Emergency doctors screen when clicked on Instant Doctor
       navigation.navigate("EmergencyStack", { screen: "emergency_home" });
+    if (type == 'book_appointment'){
+      navigation.navigate('PatientStack', {
+        screen: 'book_appointment'
+      })
+    }
     if (type === "scheduled_appointment") {
       navigation.navigate("DoctorStack", {
         screen: "doctor_menu",

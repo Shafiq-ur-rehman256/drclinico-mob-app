@@ -4,9 +4,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 import PatientHome from "./Patient/patientHome";
 import Inbox from "./inbox";
-import UpdateProfile from "./updateProfile";
+import UpdateProfile from "../pages/Doctor/updateProfile";
 import Prescription from "./prescription";
-
+import PatientProfile from '../pages/Patient/patientProfile'
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -38,7 +38,6 @@ export default Mainpage = ({ route }) => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           let Size;
-          // console.log(route);
           // console.log(color, size);
           if (route.name === "Home1") {
             iconName = focused ? "ios-home" : "ios-home-outline";
@@ -88,7 +87,7 @@ export default Mainpage = ({ route }) => {
       />
       <Tab.Screen
         name="Settings3"
-        component={UpdateProfile}
+        component={route.params?.data?.accessControl == 'patient'? PatientProfile : UpdateProfile}
         initialParams={{ data: route.params}}
       />
     </Tab.Navigator>

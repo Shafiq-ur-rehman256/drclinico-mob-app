@@ -10,55 +10,17 @@ import {
   Pressable
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { PrimaryButton } from "../components/primaryButton";
+import { PrimaryButton } from "../../components/primaryButton";
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useState } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
-import { getAvailableSlot, updateAvailableSlot } from "../services/api.doctor..service";
+import { getAvailableSlot, updateAvailableSlot } from "../../services/api.doctor..service";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default UpdateProfile = ({ navigation, route }) => {
-  const [availableSlots, setAvailableSlots] = useState([
-    {
-      day_name: 'Monday',
-      start: null,
-      end: null
-    },
-    {
-      day_name: 'Tuesday',
-      start: null,
-      end: null
-    },
-    {
-      day_name: 'Wednesday',
-      start: null,
-      end: null
-    },
-    {
-      day_name: 'Thursday',
-      start: null,
-      end: null
-    },
-    {
-      day_name: 'Friday',
-      start: null,
-      end: null
-    },
-    {
-      day_name: 'Saturday',
-      start: null,
-      end: null
-    },
-    {
-      day_name: 'Sunday',
-      start: null,
-      end: null
-    }
-  ])
-
-  const [editSlots, setEditSlots] = useState(false)
-  const [selectedDay, setSelectedDay] = useState(null);
+export default PatientProfile = ({ navigation, route }) => {
+  
+  
   const {
     control,
     formState: { errors },
@@ -66,33 +28,6 @@ export default UpdateProfile = ({ navigation, route }) => {
 
   const { accessControl } = route.params.data;
 
-
-  const setAllAvailableSlots = async()=>{
-
-    const { data } = await getAvailableSlot();
-    // console.log(data);
-    if (data.length) {
-      setAvailableSlots(data);
-    } 
-
-  }
-  useEffect(()=>{
-
-    setAllAvailableSlots()
-
-  }, [])
-
-  useEffect(()=>{
-
-    // if (editSlots) {
-      const payload = {
-        slots: availableSlots
-        
-      }
-      updateAvailableSlot(payload)
-      setEditSlots(false)
-    // }
-  }, [availableSlots])
 
   const logout = async () => {
 
@@ -104,70 +39,6 @@ export default UpdateProfile = ({ navigation, route }) => {
     }
 
 
-  }
-
-
-
-  const selectDate = (date, index, type) => {
-
-    if (date.type == 'dismissed') return;
-    
-    const DATE = new Date(date.nativeEvent.timestamp);
-    let hours = DATE.getHours();
-    let minutes = DATE.getMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // Handle midnight (0 hours)
-    minutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero if needed
-    const timeString = hours + ':' + minutes + ' ' + ampm;
-    
-    if (type == 'start') {
-      
-      const newState = availableSlots.map((ele, ind) => {
-        if (ind == index) {
-          return {
-            ...ele,
-            start: timeString
-            
-          }
-        } else {
-          return {
-            ...ele
-          }
-        }
-      })
-      setAvailableSlots(newState)
-      
-    }
-    
-    if (type == 'end') {
-      console.log(type);
-      const newState = availableSlots.map((ele, ind) => {
-        if (ind == index) {
-          return {
-            ...ele,
-            end: timeString
-            
-          }
-        } else {
-          return {
-            ...ele
-          }
-        }
-      })
-      setAvailableSlots(newState)
-    }
-
-  }
-
-  const visibleTimeModal = (index, type) => {
-    DateTimePickerAndroid.open({
-      value: new Date(),
-      onChange: (date) => selectDate(date, index, type),
-      mode: 'time',
-      is24Hour: false,
-      display: 'default',
-    })
   }
 
 
@@ -188,12 +59,12 @@ export default UpdateProfile = ({ navigation, route }) => {
               <View style={styles.uploadImageIconContainer}>
                 <Image
                   style={styles.uploadImageIcon}
-                  source={require("../../assets/camera.png")}
+                  source={require("../../../assets/camera.png")}
                 />
               </View>
               <Image
                 style={styles.welcomeAvatar}
-                source={require("../../assets/patient1.png")}
+                source={require("../../../assets/patient1.png")}
               ></Image>
             </View>
           </View>
@@ -253,28 +124,6 @@ export default UpdateProfile = ({ navigation, route }) => {
                 rules={{ required: true }}
               />
             </View>
-            <View>
-              <Text style={styles.heading}>Available Slots</Text>
-
-            </View>
-            {
-              availableSlots.map((ele, ind) => (
-                <View style={styles.availableSlots} key={ind}>
-                  <View style={styles.formElement2}>
-                    <Text style={styles.slotLabel}>{ele.day_name}</Text>
-                  </View>
-                  <View style={styles.formElement2}>
-                    <Pressable style={styles.timeBtnContainer} onPress={() => visibleTimeModal(ind, 'start')}>
-                      <Text style={styles.timeBtnText} >{ele.start ? ele.start : 'Start Time'}</Text>
-                    </Pressable>
-                    <Pressable style={styles.timeBtnContainer} onPress={() => visibleTimeModal(ind, 'end')}>
-                      <Text style={styles.timeBtnText} >{ele.end ? ele.end : 'End Time'}</Text>
-                    </Pressable>
-                  </View>
-                </View>
-              ))
-            }
-
             <View style={styles.bottomBtn}>
               <PrimaryButton prop={{ text: "Logout", onPress:  logout }}></PrimaryButton>
             </View>

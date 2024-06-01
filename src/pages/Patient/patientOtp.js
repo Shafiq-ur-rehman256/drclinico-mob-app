@@ -9,12 +9,12 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 // import OTPInputView from '@twotalltotems/react-native-otp-input';
-import { PrimaryButton } from "../components/primaryButton";
-import { docVerifyOtp, verifyOtpPatient } from "../services/api.doctor..service";
+import { PrimaryButton } from "../../components/primaryButton";
+import { docVerifyOtp, verifyOtpPatient } from "../../services/api.doctor..service";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from "react";
 import { useDispatch } from 'react-redux'
-import { setSnackBar } from "../store/reducers";
+import { setSnackBar } from "../../store/reducers";
 
 export default PatientOtp = ({ navigation, route }) => {
 
@@ -80,7 +80,7 @@ export default PatientOtp = ({ navigation, route }) => {
       <View style={styles.logoContainer}>
         <Image
           style={styles.logo}
-          source={require("../../assets/drlogo.png")}
+          source={require("../../../assets/drlogo.png")}
         ></Image>
       </View>
 

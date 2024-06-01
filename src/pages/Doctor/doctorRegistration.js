@@ -9,13 +9,13 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { PrimaryButton } from "../components/primaryButton";
+import { PrimaryButton } from "../../components/primaryButton";
 import {
   useForm,
   Controller,
 } from "react-hook-form";
-import { doctorSignUp } from "../services/api.doctor..service";
-import { setSnackBar } from "../store/reducers";
+import { doctorSignUp } from "../../services/api.doctor..service";
+import { setSnackBar } from "../../store/reducers";
 import { useDispatch } from 'react-redux'
 import { ErrorMessage } from "@hookform/error-message"
 import { useState, useEffect } from "react";
@@ -73,7 +73,7 @@ export default DoctorRegistration = ({ navigation }) => {
       <View style={styles.logoContainer}>
         <Image
           style={styles.logo}
-          source={require("../../assets/drlogo.png")}
+          source={require("../../../assets/drlogo.png")}
         ></Image>
       </View>
 

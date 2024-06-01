@@ -7,15 +7,15 @@ import {
   TextInput,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { PrimaryButton } from "../components/primaryButton";
+import { PrimaryButton } from "../../components/primaryButton";
 import {
   useForm,
   Controller,
   SubmitErrorHandler,
   UseFormGetValues,
 } from "react-hook-form";
-import { registerPatient } from "../services/api.doctor..service";
-import { setSnackBar } from "../store/reducers";
+import { registerPatient } from "../../services/api.doctor..service";
+import { setSnackBar } from "../../store/reducers";
 import { useDispatch } from 'react-redux'
 import { useState } from "react";
 import { useEffect } from "react";
@@ -86,7 +86,7 @@ export default PatientRegistration = ({ navigation }) => {
       <View style={styles.logoContainer}>
         <Image
           style={styles.logo}
-          source={require("../../assets/drlogo.png")}
+          source={require("../../../assets/drlogo.png")}
         ></Image>
       </View>
 
