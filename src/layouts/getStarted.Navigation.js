@@ -25,6 +25,7 @@ export default function GetStartedNav({ navigation }) {
 
         const user = JSON.parse(await AsyncStorage.getItem('user'));
         // console.log(user);
+        // console.log("==",user?.accessControl);
         if (user?.token) {
             navigation.navigate("MainStack", {
                 screen: "main",

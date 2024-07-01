@@ -17,14 +17,13 @@ export default function PatientInfoCard({ appointmentInfo }) {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.title}>{appointmentInfo.pt_name}</Text>
-        {appointmentStatus === "pending" && (
+        {appointmentStatus === "PENDING" && (
           <Text style={styles.description}>
-            {appointmentInfo.appointment_details.startTime} -{" "}
-            {appointmentInfo.appointment_details.endTime}
+            {appointmentInfo.appointment_details.slot_time}
           </Text>
         )}
       </View>
-      {appointmentStatus === "pending" && (
+      {appointmentStatus === "PENDING" && (
         <View style={styles.appointmentDate}>
           <Text style={styles.date}>{String(formattedDate)}</Text>
         </View>

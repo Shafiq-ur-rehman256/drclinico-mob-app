@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 
 export default Prescription = ({ navigation, route }) => {
-  console.log("=====================================", route);
+  // console.log("=====================================", route);
   const { accessControl } = route.params.data;
 
   const data = [

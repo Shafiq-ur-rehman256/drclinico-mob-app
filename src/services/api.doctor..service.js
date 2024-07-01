@@ -143,6 +143,76 @@ export const getAvailableSlot = async() =>{
     }
 }
 
+export const patientsAppointmentList = async() => {
+    try {
+        
+        const headers = await getDoctorAuthHeaders();
+        let response = await axios.get(api_routes.appointments.patientAppointments, {headers: headers});
+        return response.data;
+
+    } catch (error) {
+        console.log(error);
+        const Error = {
+            code: 0,
+            message: error
+        }
+        return Error;
+    }
+}
+
+export const getAllConvoForDocs = async() =>{
+    try {
+        
+        const headers = await getDoctorAuthHeaders();
+        let response = await axios.get(api_routes.doctor.convoList, {headers: headers});
+        return response.data;
+
+    } catch (error) {
+        console.log(error);
+        const Error = {
+            code: 0,
+            message: error
+        }
+        return Error;
+    }
+}
+
+export const sendMessageToPatient = async(data) =>{
+    try {
+        
+        const headers = await getDoctorAuthHeaders();
+        let response = await axios.post(api_routes.doctor.sendMessage,data, {headers: headers});
+        return response.data;
+
+    } catch (error) {
+        console.log(error);
+        const Error = {
+            code: 0,
+            message: error
+        }
+        return Error;
+    }
+}
+
+
+export const getAllPatientChat = async(patient_id) =>{
+    try {
+        console.log(`${api_routes.doctor.patient_chats}/${patient_id}`);
+        const headers = await getDoctorAuthHeaders();
+        let response = await axios.get(`${api_routes.doctor.patient_chats}/${patient_id}`, {headers: headers});
+        console.log(response);
+        return response.data;
+
+    } catch (error) {
+        // console.log(error);
+        const Error = {
+            code: 0,
+            message: error
+        }
+        return Error;
+    }
+}
+
 // DOCTOR-END
 
 // PATIENT-START
@@ -236,6 +306,77 @@ export const getDotorAvailiblitySlots = async(doctor_id) => {
 }
 
 
+export const patientBookAppointment = async(payload) =>{
+    try {
+        const headers = await getPatientAuthHeaders()
+        let response = await axios.post(`${api_routes.appointments.patient_bookAppointment}`,payload, {headers: headers});
+        return response.data;
+    } catch (error) {
+        const Error = {
+            code: 0,
+            msg: error.response.data.message
+        }
+        return Error;
+    }
+}
+
+export const getAllConvoForPatient = async() =>{
+    try {
+        
+        const headers = await getPatientAuthHeaders();
+        let response = await axios.get(api_routes.patient.convoList, {headers: headers});
+        return response.data;
+
+    } catch (error) {
+        console.log(error);
+        const Error = {
+            code: 0,
+            message: error
+        }
+        return Error;
+    }
+}
+
+
+export const sendMessageToDoctor = async(payload) =>{
+    try {
+        const headers = await getPatientAuthHeaders()
+        let response = await axios.post(`${api_routes.patient.sendMessage}`,payload, {headers: headers});
+        return response.data;
+    } catch (error) {
+        const Error = {
+            code: 0,
+            msg: error.response.data.message
+        }
+        return Error;
+    }
+}
+
+export const getAllDoctorChat = async(doctor_id) =>{
+    try {
+        const headers = await getPatientAuthHeaders()
+        let response = await axios.get(`${api_routes.patient.doctor_chats}/${doctor_id}`, {headers: headers});
+        return response.data;
+    } catch (error) {
+        const Error = {
+            code: 0,
+            msg: error.response.data.message
+        }
+        return Error;
+    }
+}
+
 
 
 // PATIENT-END
+
+
+// APPOINTMENT-START
+
+export const startAppointmentByDoctor = async(payload) =>{
+    const headers = await getDoctorAuthHeaders()
+    let response = await axios.post(`${api_routes.appointments.doctor_start_appointment}`,payload, {headers: headers});
+    return response.data;
+}
+
+// APPOINTMENT-END

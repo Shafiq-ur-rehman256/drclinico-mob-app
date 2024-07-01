@@ -11,7 +11,7 @@ import { PrimaryButton } from "../../components/primaryButton";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { useEffect } from "react";
-import { doctorAuthenticate, patientAuthenticate } from "../../services/api.doctor..service";
+import { patientAuthenticate } from "../../services/api.doctor..service";
 import { useDispatch } from 'react-redux'
 import { setSnackBar } from "../../store/reducers";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -40,7 +40,7 @@ export default PatientSignIn = ({ navigation }) => {
     const onSubmit = async (data) => {
         console.log("pppppppppppppp",data);
         const { code, msg, data:Data } = await patientAuthenticate(data);
-
+        console.log(code);
         if (code == 200) {
             await AsyncStorage.setItem('patient_auth', Data.auth_token)
             const payload = {

@@ -31,11 +31,12 @@ export default PatientProfile = ({ navigation, route }) => {
 
   const logout = async () => {
 
-    
+    console.log("run");
     const user = JSON.parse(await AsyncStorage.getItem('user'));
-    if (user.accessControl == 'doctor') {
+    console.log(user);
+    if (user.accessControl == 'patient') {
       await AsyncStorage.removeItem('user');
-      navigation.navigate("RegisterStack", { screen: "doctor_login" });
+      navigation.navigate("RegisterStack", { screen: "patient_login" });
     }
 
 
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   body: {
-    marginTop: 10,
+    marginTop: 40,
     // marginBottom: 15,
     padding: 20,
     display: "flex",

@@ -1,26 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit"
+import {  createSlice } from "@reduxjs/toolkit"
 
 
 const appState = {
     main: {
+        socket: {
+            connected: false,
+        },
         SnackBar: {
             show: false,
             message: ''
-        } 
-    },
-    homeScreem: {
-        data: [1,2,3]
-    },
+        }
+    }
+
 };
+
+
 
 const appSlice = createSlice({
     name: "state",
     initialState: appState,
     reducers: {
-
-        setSnackBar: (state, action)=>{
+        setSocketConnection : (state, action) =>{
+            state.main.socket.connected = action.payload;
+        },
+        // snack bar reducers
+        setSnackBar: (state, action) => {
             state.main.SnackBar = action.payload;
-        }
+        },
 
     }
 })
@@ -28,4 +34,4 @@ const appSlice = createSlice({
 
 export default appSlice.reducer
 
-export const { setSnackBar } = appSlice.actions
+export const { setSnackBar, deSelectChat, setSocketConnection } = appSlice.actions

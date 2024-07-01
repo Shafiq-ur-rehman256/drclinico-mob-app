@@ -5,6 +5,7 @@ import {
   Image,
   Pressable,
   TextInput,
+  ScrollView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { PrimaryButton } from "../../components/primaryButton";
@@ -83,6 +84,8 @@ export default PatientRegistration = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <ScrollView scrollEnabled={true} contentContainerStyle={{ alignItems: 'center' }}>
+        
       <View style={styles.logoContainer}>
         <Image
           style={styles.logo}
@@ -201,6 +204,7 @@ export default PatientRegistration = ({ navigation }) => {
         </Pressable>
       </View>
 
+      </ScrollView>
       <StatusBar backgroundColor="#fff"></StatusBar>
     </View>
   );
@@ -209,7 +213,7 @@ export default PatientRegistration = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    // alignItems: "center",
     // justifyContent: 'center',
     backgroundColor: "#fff",
   },
@@ -242,21 +246,26 @@ const styles = StyleSheet.create({
   form: {
     marginTop: "5%",
     display: "flex",
-    width: "80%",
-    rowGap: 15,
+    width: "90%",
+    rowGap: 10,
+  },
+  GroupElement: {
+    display: "flex",
+    flexDirection: "row",
+    marginBottom: 1,
+    justifyContent: "space-between",
+    columnGap: 5,
   },
   formElement: {
     display: "flex",
-    rowGap: 5,
-    // justifyContent: 'center',
-    // alignItems: 'center'
+    rowGap: 5
   },
   formError: {
     color: '#FF0000'
   },
   label: {
     color: "#A7A6A5",
-    fontSize: 16,
+    fontSize: 15,
   },
   input: {
     backgroundColor: "#EFF2F1",
@@ -267,10 +276,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   bottomBtn: {
-    marginTop: 20,
-    display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  primaryBtn: {
+    backgroundColor: '#2FC1FF',
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 220,
+    borderRadius: 18
   },
   bottomText: {
     display: "flex",

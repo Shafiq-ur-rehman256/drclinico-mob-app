@@ -7,8 +7,9 @@ import {
 export const CustomSnackBar = () => {
 
     const dispatch = useDispatch()
-    const state = useSelector(state => state.state.main)
-    if (state.SnackBar.show) {
+    const state = useSelector(state => state.state)
+    // console.log("==========sadasd===",state.main.SnackBar.show);
+    if (state.main.SnackBar.show) {
         setTimeout(() => {
             dispatch(setSnackBar({show: false, message: ''}))
         }, 3000);
@@ -17,9 +18,9 @@ export const CustomSnackBar = () => {
     return (
         <Snackbar
         style={styles.snackBarStyle}
-        visible={state.SnackBar.show}
+        visible={state.main.SnackBar.show}
         >
-        {state.SnackBar.message}
+        {state.main.SnackBar.message}
       </Snackbar>
     )
 

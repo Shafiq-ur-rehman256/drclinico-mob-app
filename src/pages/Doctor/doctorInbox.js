@@ -7,14 +7,42 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-import { useState } from "react";
-import SimpleModal from "../components/modal";
-import { Tag } from "../components/tag";
+import { useCallback, useEffect, useState } from "react";
+import SimpleModal from "../../components/modal";
+import { Tag } from "../../components/tag";
+import { useDispatch, useSelector } from "react-redux";
+import { deSelectChat, GetAllConvoForDocs, selectChat } from "../../store/doctorReducer";
+import { useFocusEffect } from "@react-navigation/native";
 
-export default Inbox = ({ route }) => {
-  const { accessControl } = route.params.data;;
+export default DoctorInbox = ({ navigation,route }) => {
+
+  console.log("DOCTOR INDBOX");
+  // DOCTOR-MAIN-STATES
+  const dispatch = useDispatch()
+  const state = useSelector(state => state.doctorState.chatScreen);
+
+  // IN-COMPONENT-STATE
   const [modalVisible, setModalVisible] = useState(false);
   const [hasModalBeenShown, setHasModalBeenShown] = useState(false);
+  
+  const { accessControl } = route.params.data;
+
+  const navigateToChat = (chat) =>{
+    dispatch(selectChat(chat))
+    navigation.navigate('DoctorStack', {
+      screen: 'chat_box',
+      params: { convo: chat, accessControl: "doctor" },
+    })
+  }
+
+  // console.log("APP STATE",state);
+  useFocusEffect(useCallback(()=>{
+    dispatch(GetAllConvoForDocs());
+
+    return ()=>{
+      // dispatch(deSelectChat())
+    }
+  },[]))
 
   const showModal = () => {
     if (!hasModalBeenShown) {
@@ -27,192 +55,23 @@ export default Inbox = ({ route }) => {
 
   //Uncomment the line below to test the modal
   // showModal();
-  const data = [
-    {
-      id: 1,
-      senderInfo: {
-        sender: "doctor",
-        name: "Dr. John Doee",
-        profileImage: require("../../assets/doc2.png"),
-        specialization: "Cardiologist",
-      },
-      messages: [
-        {
-          id: 1,
-          sender: "doctor",
-          message: "Hello, how are you today?",
-          time: "10:00 AM",
-          status: "read",
-        },
-        {
-          id: 2,
-          sender: "patient",
-          message: "I'm good, thank you!",
-          time: "10:10 AM",
-          status: "read",
-        },
-        {
-          id: 3,
-          sender: "doctor",
-          message: "Did you take your medication today?",
-          time: "10:20 AM",
-          status: "unread",
-        },
-      ],
-    },
-    {
-      id: 2,
-      senderInfo: {
-        sender: "doctor",
-        name: "Dr. Aly Williams",
-        profileImage: require("../../assets/doc1.png"),
-        specialization: "Pediatrician",
-      },
-      messages: [
-        {
-          id: 1,
-          sender: "doctor",
-          message: "Hello, how are you today?",
-          time: "10:00 AM",
-          status: "read",
-        },
-        {
-          id: 2,
-          sender: "patient",
-          message: "I'm good, thank you!",
-          time: "10:10 AM",
-          status: "unread",
-        },
-        {
-          id: 3,
-          sender: "doctor",
-          message: "Did you take your medication today?",
-          time: "10:20 AM",
-          status: "unread",
-        },
-        {
-          id: 4,
-          sender: "doctor",
-          message: "Make sure to visit me next week",
-          time: "10:20 AM",
-          status: "unread",
-        },
-      ],
-    },
-    {
-      id: 3,
-      senderInfo: {
-        sender: "doctor",
-        name: "Dr. Jane Smith",
-        profileImage: require("../../assets/doc3.png"),
-        specialization: "Dermatologist",
-      },
-      messages: [
-        {
-          id: 1,
-          sender: "doctor",
-          message: "Hello, how are you today?",
-          time: "10:00 AM",
-          status: "read",
-        },
-        {
-          id: 2,
-          sender: "patient",
-          message: "I'm good, thank you for asking!",
-          time: "10:10 AM",
-          status: "read",
-        },
-      ],
-    },
-    {
-      id: 4,
-      senderInfo: {
-        sender: "patient",
-        name: "Ethan Turner",
-        profileImage: require("../../assets/doc3.png"),
-        specialization: null,
-      },
-      messages: [
-        {
-          id: 1,
-          sender: "doctor",
-          message: "Hello, how are you today?",
-          time: "10:00 AM",
-          status: "read",
-        },
-        {
-          id: 2,
-          sender: "patient",
-          message: "I'm good, thank you for asking!",
-          time: "10:10 AM",
-          status: "unread",
-        },
-      ],
-    },
-    {
-      id: 5,
-      senderInfo: {
-        sender: "patient",
-        name: "Caleb Rodriguez",
-        profileImage: require("../../assets/doc3.png"),
-        specialization: null,
-      },
-      messages: [
-        {
-          id: 1,
-          sender: "doctor",
-          message: "Hello, how are you today?",
-          time: "10:00 AM",
-          status: "read",
-        },
-        {
-          id: 2,
-          sender: "patient",
-          message: "I'm good, thank you for asking!",
-          time: "10:10 AM",
-          status: "read",
-        },
-        {
-          id: 3,
-          sender: "doctor",
-          message: "Did you take your medication today?",
-          time: "10:20 AM",
-          status: "read",
-        },
-        {
-          id: 4,
-          sender: "patient",
-          message: "Yes, I did!",
-          time: "10:20 AM",
-          status: "read",
-        },
-        {
-          id: 5,
-          sender: "patient",
-          message: "But I'm feeling a bit dizzy",
-          time: "10:20 AM",
-          status: "read",
-        },
-      ],
-    },
-  ];
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.heading}>Chats</Text>
       </View>
       <View style={styles.body}>
-        {data
-          .filter((chat) => chat.senderInfo.sender !== accessControl)
+        {state.conversations
           .map((chat, ind) => {
             return (
               <View style={styles.chatBox} key={ind}>
                 <Pressable
+                onPress={() => navigateToChat(chat)}
                 // onPress={() => {
                 //   routeTo("MessageScreen", { message: chat });
                 // }}
                 >
-                  <ChatCard chat={chat}></ChatCard>
+                  <ChatCard chat={chat} ></ChatCard>
                 </Pressable>
               </View>
             );
@@ -231,31 +90,31 @@ export default Inbox = ({ route }) => {
               <View style={styles.reviewStars}>
                 <Pressable onPress={() => setModalVisible(!modalVisible)}>
                   <Image
-                    source={require("../../assets/reviewStar.png")}
+                    source={require("../../../assets/reviewStar.png")}
                     style={styles.star}
                   ></Image>
                 </Pressable>
                 <Pressable onPress={() => setModalVisible(!modalVisible)}>
                   <Image
-                    source={require("../../assets/reviewStar.png")}
+                    source={require("../../../assets/reviewStar.png")}
                     style={styles.star}
                   ></Image>
                 </Pressable>
                 <Pressable onPress={() => setModalVisible(!modalVisible)}>
                   <Image
-                    source={require("../../assets/reviewStar.png")}
+                    source={require("../../../assets/reviewStar.png")}
                     style={styles.star}
                   ></Image>
                 </Pressable>
                 <Pressable onPress={() => setModalVisible(!modalVisible)}>
                   <Image
-                    source={require("../../assets/reviewStar.png")}
+                    source={require("../../../assets/reviewStar.png")}
                     style={styles.star}
                   ></Image>
                 </Pressable>
                 <Pressable onPress={() => setModalVisible(!modalVisible)}>
                   <Image
-                    source={require("../../assets/reviewStar.png")}
+                    source={require("../../../assets/reviewStar.png")}
                     style={styles.star}
                   ></Image>
                 </Pressable>
@@ -296,37 +155,38 @@ export default Inbox = ({ route }) => {
   );
 };
 
-export const ChatCard = ({ chat }) => {
-  const lastMessage = chat.messages[chat.messages.length - 1];
-  const unreadMessagesLength = chat.messages.filter(
-    (message) => message.status === "unread"
-  ).length;
+const ChatCard = ({ chat }) => {
+  // console.log(chat);
+  // const lastMessage = chat.messages[chat.messages.length - 1];
+  // const unreadMessagesLength = chat.messages.filter(
+  //   (message) => message.status === "unread"
+  // ).length;
+
+  
+
   return (
     <View style={styles.chatContainer}>
       <View style={styles.nameAndMessage}>
         <View>
           <Image
             style={styles.profileImage}
-            source={chat.senderInfo.profileImage}
+            source={require("../../../assets/doc3.png")}
           ></Image>
         </View>
         <View style={styles.infoBody}>
-          <Text style={styles.senderName}>{chat.senderInfo.name}</Text>
-          {chat.senderInfo.specialization !== null && (
-            <Text style={styles.specialization}>
-              {chat.senderInfo.specialization}
-            </Text>
-          )}
+          <Text style={styles.senderName}>{chat.patient.full_name}</Text>
           <Text
             style={
-              lastMessage.status === "unread"
-                ? styles.message
-                : styles.readMessage
+              styles.message
+              // lastMessage.status === "unread"
+              //   ? styles.message
+              //   : styles.readMessage
             }
           >
-            {lastMessage.message.length > 10
+            Write first message...
+            {/* {lastMessage.message.length > 10
               ? `${lastMessage.message.slice(0, 25)}...`
-              : lastMessage.message}
+              : lastMessage.message} */}
           </Text>
         </View>
       </View>
@@ -334,17 +194,20 @@ export const ChatCard = ({ chat }) => {
         <View>
           <Text
             style={
-              chat.senderInfo.sender === "doctor"
-                ? styles.time
-                : styles.timeDoctor
+              styles.time
+              // chat.senderInfo.sender === "doctor"
+              //   ? styles.time
+              //   : styles.timeDoctor
             }
           >
-            {lastMessage.time.slice(0, -3)}
+            10:20
+            {/* {lastMessage.time.slice(0, -3)} */}
           </Text>
         </View>
-        {unreadMessagesLength > 0 && (
+        <Text style={styles.messageslength}>{1}</Text>
+        {/* {unreadMessagesLength > 0 && (
           <Text style={styles.messageslength}>{unreadMessagesLength}</Text>
-        )}
+        )} */}
       </View>
     </View>
   );
@@ -442,6 +305,8 @@ const styles = StyleSheet.create({
     padding: 1,
     height: 20,
     width: 20,
+    position: 'absolute',
+    top: 26 
   },
   readMessage: {
     fontFamily: "Gilroy-SemiBold",

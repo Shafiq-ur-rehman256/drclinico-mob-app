@@ -43,7 +43,8 @@ export default DoctorSignIn = ({ navigation }) => {
         if (code == 200) {
             const payload = {
                 accessControl: 'doctor',
-                token: Data.auth_token
+                token: Data.auth_token,
+                ...Data
             }
             await AsyncStorage.setItem('user', JSON.stringify(payload))
             dispatch(setSnackBar({ show: true, message: msg }))

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import AppNavigator from './src/layouts/app.Navigation';
 import { useFonts } from 'expo-font';
 import { View, ScrollView } from 'react-native';
@@ -6,6 +6,8 @@ import { Provider } from 'react-redux'
 import store from './src/store/store';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { CustomSnackBar } from './src/components/snackBac';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function App() {
 
@@ -15,7 +17,6 @@ export default function App() {
     'Gilroy-Medium': require('./assets/fonts/gilroy/Gilroy-Medium.ttf'),
     'Gilroy-Light': require('./assets/fonts/gilroy/Gilroy-Light.ttf')
   });
-
 
   if (!fontsLoaded) {
     return (

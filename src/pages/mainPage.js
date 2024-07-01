@@ -3,10 +3,17 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 import PatientHome from "./Patient/patientHome";
-import Inbox from "./inbox";
+import Inbox from "../pages/Patient/inbox";
 import UpdateProfile from "../pages/Doctor/updateProfile";
 import Prescription from "./prescription";
 import PatientProfile from '../pages/Patient/patientProfile'
+import doctorInbox from "./Doctor/doctorInbox";
+import { useEffect } from "react";
+import { socket } from "../services/socket.service";
+import { useDispatch, useSelector } from "react-redux";
+import { setSocketConnection } from "../store/reducers";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+// import DoctorIndex
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -26,9 +33,44 @@ function SettingsScreen() {
 const Tab = createBottomTabNavigator();
 
 export default Mainpage = ({ route }) => {
-  // console.log("=====runnnnnnnn", route);
-  // const { accessControl } = route.params;
 
+  const mainState = useSelector(state => state.state);
+  
+  const dispatch = useDispatch();
+
+  // console.log("route.params?.data?.accessControl:", route.params.accessControl);
+
+  const sendIdentityToServer = async() => {
+    if (socket.connected) {
+      const user = JSON.parse(await AsyncStorage.getItem('user'));
+      
+      const payload = {
+        user_type: route.params?.accessControl,
+        user_id: user.id
+      }
+      console.log(route.params);
+      socket.emit('set-socket', payload);
+      dispatch(setSocketConnection(true));
+    }
+
+  }
+  useEffect(()=>{
+
+    sendIdentityToServer();
+    socket.on('connect', ()=>{ 
+      console.log("Server Connected");
+      sendIdentityToServer();
+    })
+
+
+    socket.on('disconnect', ()=>{
+      dispatch(setSocketConnection(false));
+      console.log("Server Disconnected");
+    })
+    return () => {
+      socket.off('connect');
+    };
+  }, [])
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -40,16 +82,16 @@ export default Mainpage = ({ route }) => {
           let Size;
           // console.log(color, size);
           if (route.name === "Home1") {
-            iconName = focused ? "ios-home" : "ios-home-outline";
-            Size = size;
+            iconName = focused ? "home-sharp" : "home-outline";
+            Size = size + 10;
           } else if (route.name === "Settings") {
             iconName = focused
-              ? "md-document-text"
-              : "md-document-text-outline";
+              ? "document-text"
+              : "document-text-outline";
             Size = size;
           } else if (route.name === "Settings1") {
-            iconName = focused ? "md-scan-circle" : "md-scan-circle-outline";
-            Size = size + 20;
+            iconName = focused ? "scan-circle" : "scan-circle-outline";
+            Size = size;
           } else if (route.name === "Settings2") {
             iconName = focused
               ? "chatbubble-ellipses"
@@ -70,24 +112,24 @@ export default Mainpage = ({ route }) => {
       })}
     >
       <Tab.Screen
-        name="Home1"
-        component={PatientHome}
-        initialParams={{ data: route.params }}
-      />
-      <Tab.Screen
         name="Settings"
         component={Prescription}
         initialParams={{ data: route.params }}
       />
       <Tab.Screen name="Settings1" component={SettingsScreen} />
       <Tab.Screen
+        name="Home1"
+        component={PatientHome}
+        initialParams={{ data: route.params }}
+      />
+      <Tab.Screen
         name="Settings2"
-        component={Inbox}
+        component={route.params?.accessControl == 'patient'? Inbox: doctorInbox}
         initialParams={{ data: route.params }}
       />
       <Tab.Screen
         name="Settings3"
-        component={route.params?.data?.accessControl == 'patient'? PatientProfile : UpdateProfile}
+        component={route.params?.accessControl == 'patient'? PatientProfile : UpdateProfile}
         initialParams={{ data: route.params}}
       />
     </Tab.Navigator>

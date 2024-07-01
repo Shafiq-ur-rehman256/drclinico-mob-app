@@ -57,7 +57,7 @@ export default PatientOtp = ({ navigation, route }) => {
       console.log(payload);
 
       const {code, msg} = await verifyOtpPatient(payload)
-
+      console.log(msg);
       if (code == 200) {
         dispatch(setSnackBar({ show: true, message: msg }))
         // navigation.navigate("MainStack", {

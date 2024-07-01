@@ -5,78 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02ce213a-6090-420d-a889-db84431857b3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/android/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/debug.keystore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/debug/java/com/shafiqurrehman/drclinicomobapp/ReactNativeFlipper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/java/com/shafiqurrehman/drclinicomobapp/MainActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/java/com/shafiqurrehman/drclinicomobapp/MainApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/splashscreen_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/splashscreen_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/splashscreen_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxhdpi/splashscreen_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxxhdpi/splashscreen_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/rn_edit_text_material.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/splashscreen.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/values-night/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/app/src/release/java/com/shafiqurrehman/drclinicomobapp/ReactNativeFlipper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/android/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/thumbsup.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Doctor/AvailibiltySlots.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Doctor/doctorRegistration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Doctor/doctorSignIn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Doctor/updateProfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Patient/patientBookAppointment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Patient/patientOtp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Patient/patientProfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Patient/patientRegistration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Patient/patientSignIn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/audio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/back_btn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/back_btn.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/doctor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/medicine1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/medicine2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/chatbox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Patient/inbox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/socket.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/doctorReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/patientReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/patientInfoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/patientInfoCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/snackBac.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/snackBac.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/api.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/api.routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/emergency.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/emergency.Navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/main.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/main.Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/app.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/app.Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/doctor.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/doctor.Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/getStarted.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/getStarted.Navigation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/patient.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/patient.Navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/registration.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/registration.Navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Patient/patientHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Patient/patientHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/doctorRegistration.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/doctorSignIn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Doctor/AvailibiltySlots.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Doctor/AvailibiltySlots.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Doctor/doctorMenuItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Doctor/doctorMenuItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Doctor/doctorSignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Doctor/doctorSignIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Patient/patientOtp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Patient/patientOtp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Patient/patientProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Patient/patientProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Patient/patientRegistration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Patient/patientRegistration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Patient/patientSignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Patient/patientSignIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/inbox.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/patientOtp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/patientRegistration.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/patientSignIn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/updateProfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/prescription.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/prescription.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/api.doctor..service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/api.doctor..service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +67,7 @@
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/SHAFIQ/Desktop/development/University/final year project/drclinico-mob-app&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;memory.settings&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
