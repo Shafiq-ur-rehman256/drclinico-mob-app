@@ -3,7 +3,7 @@ import patientHome from "../pages/Patient/patientHome";
 import patientBookAppointment from "../pages/Patient/patientBookAppointment";
 import patientDontation from "../pages/Patient/patientDontation";
 import AvailiblitySlots from "../pages/Doctor/AvailibiltySlots";
-import ChatBox from "../components/chatbox";
+import ChatBox from "../pages/Patient/patientChatBox";
 import inbox from "../pages/Patient/inbox";
 
 const Stack = createNativeStackNavigator();

@@ -33,6 +33,7 @@ export default ChatBox = ({ navigation, route }) => {
         // console.log(object);
         if (message) {
             if (route.params.accessControl == 'doctor') {
+                console.log("SendMessageToPatient");
                 const payload = {
                     message: message,
                     attachment: null,
@@ -93,10 +94,11 @@ export default ChatBox = ({ navigation, route }) => {
         if (route.params.accessControl == 'doctor') {
 
             socket.emit('leaveRoom', doctorState.chatScreen.selected_Conversation.room_name)
+            socket.off('room-joined')
 
         } else {
             socket.emit('leaveRoom', patientState.chatScreen.selected_Conversation.room_name)
-
+            socket.off('room-joined')
         }
     }
 
@@ -121,16 +123,19 @@ export default ChatBox = ({ navigation, route }) => {
         }
     }, [data]);
 
-
-    useFocusEffect(useCallback(()=>{
+    useEffect(()=>{
         console.log("BBSS");
         route.params.accessControl == 'doctor'? setData(doctorState.chatScreen.open_chat) : setData(patientState.chatScreen.open_chat);
-        // if (flatListRef.current) {
-        //     setTimeout(() => {
-        //         flatListRef.current.scrollToEnd({ animated: true });
-        //     }, 1000);
-        // }
-    },[doctorState.chatScreen.open_chat,patientState.chatScreen.open_chat]))
+    }, [doctorState.chatScreen.open_chat,patientState.chatScreen.open_chat])
+
+    // useFocusEffect(useCallback(()=>{
+        
+    //     // if (flatListRef.current) {
+    //     //     setTimeout(() => {
+    //     //         flatListRef.current.scrollToEnd({ animated: true });
+    //     //     }, 1000);
+    //     // }
+    // },[]));
 
     useFocusEffect(
         useCallback(() => {
@@ -207,6 +212,8 @@ export default ChatBox = ({ navigation, route }) => {
             </View>
 
             <View style={{...styles.chatContainer, height: keypadActive ? '60%': '75%'}}>
+                {/* <FlatList ref={flatListRef} data={data} renderItem={ConversationDoctor} keyExtractor={item => item.id} /> */}
+           
                 {
                     accessControl == 'doctor' ?
                     <FlatList ref={flatListRef} data={data} renderItem={ConversationDoctor} keyExtractor={item => item.id} />

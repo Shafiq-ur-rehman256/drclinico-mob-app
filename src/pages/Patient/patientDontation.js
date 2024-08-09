@@ -8,16 +8,19 @@ export default PatientHome = ({ navigation }) => {
     {
       key: 1,
       title: "Jazz Cash",
+      number: '0332-2600001',
       icon: require("../../../assets/jazzCash.png"),
     },
     {
       key: 2,
       title: "easypaisa",
+      number: '0332-2600001',
       icon: require("../../../assets/easypaisa.png"),
     },
   ];
 
   const routeTo = (type) => {
+    console.log("run");
     if (type === "instant_doctor")
       // Navigating the user to Emergency doctors screen when clicked on Instant Doctor
       navigation.navigate("MainStack", { screen: "main" });
@@ -33,11 +36,12 @@ export default PatientHome = ({ navigation }) => {
           laoreet.
         </Text>
         <View style={styles.paymentOptions}>
-          {data.map((paymentOption) => (
-            <Pressable onPress={() => routeTo(paymentOption.title)}>
+          {data.map((paymentOption, ind) => (
+            <Pressable key={ind} onPress={() => routeTo(paymentOption.title)}>
               <PaymentOptions
                 title={paymentOption.title}
                 icon={paymentOption.icon}
+                number={paymentOption.number}
               />
             </Pressable>
           ))}
@@ -48,11 +52,13 @@ export default PatientHome = ({ navigation }) => {
   );
 };
 
-export const PaymentOptions = ({ title, description, icon, type }) => {
+export const PaymentOptions = ({ title, description,number, icon, type }) => {
   return (
-    <View style={styles.paymentOption}>
-      <Text style={styles.paymentTitle}>{title}</Text>
+    <View >
+      <View style={styles.paymentOption}>
+      <Text style={styles.paymentTitle}>{title} {number}</Text>
       <Image style={styles.image} source={icon}></Image>
+      </View>
     </View>
   );
 };
@@ -93,11 +99,19 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     width: 340,
-    height: 70,
+    height: 100,
   },
   paymentTitle: {
     fontSize: 18,
     fontWeight: "600",
     fontFamily: "Gilroy-SemiBold",
   },
+  number: {
+    fontSize: 18,
+    fontWeight: "600",
+    fontFamily: "Gilroy-SemiBold",
+    borderColor: '#A7A6A5',
+    borderWidth: 1,
+    color: '#A7A6A5'
+  }
 });

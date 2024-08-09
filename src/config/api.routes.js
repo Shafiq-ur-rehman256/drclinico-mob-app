@@ -10,6 +10,7 @@ export const api_routes = {
         convoList: '/chats/doctor/conversations',
         sendMessage: '/chats/doctor/sendMessage',
         patient_chats: '/chats/doctor/chat',
+        prescription_list: 'prescription'
     },
     patient: {
         sign_up: '/patient/signup',

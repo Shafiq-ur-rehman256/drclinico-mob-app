@@ -1,8 +1,26 @@
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { GetAllPrescription } from "../../store/doctorReducer";
 
-export default Prescription = ({ navigation, route }) => {
+export default DoctorPrescription = ({ navigation, route }) => {
+
+  const screenState = useSelector(state => state.doctorState.prescriptionScreen);
+  const dispatch = useDispatch()
+  // console.log(screenState);
   // console.log("=====================================", route);
   const { accessControl } = route.params.data;
+
+  const getAllPrescription = () => {
+    dispatch(GetAllPrescription());
+  }
+
+  useFocusEffect(
+    useCallback(()=>{
+      getAllPrescription()
+    },[])
+  )
 
   const data = [
     {
@@ -10,7 +28,7 @@ export default Prescription = ({ navigation, route }) => {
       from: {
         type: "doctor",
         name: "Dr. John Doe",
-        avatar: require("../../assets/doc1.png"),
+        avatar: require("../../../assets/doc1.png"),
         speciality: "Cardiologist",
       },
       meta: {
@@ -37,7 +55,7 @@ export default Prescription = ({ navigation, route }) => {
       from: {
         type: "doctor",
         name: "Dr. John Doe",
-        avatar: require("../../assets/doc1.png"),
+        avatar: require("../../../assets/doc1.png"),
         speciality: "Cardiologist",
       },
       meta: {
@@ -64,7 +82,7 @@ export default Prescription = ({ navigation, route }) => {
       from: {
         type: "doctor",
         name: "Dr. John Doe",
-        avatar: require("../../assets/doc1.png"),
+        avatar: require("../../../assets/doc1.png"),
         speciality: "Cardiologist",
       },
       meta: {
@@ -91,7 +109,7 @@ export default Prescription = ({ navigation, route }) => {
       from: {
         type: "patient",
         name: "Ethan Turner",
-        avatar: require("../../assets/patientImg1.png"),
+        avatar: require("../../../assets/patientImg1.png"),
       },
       meta: {
         issued: "2021-08-11",
@@ -117,7 +135,7 @@ export default Prescription = ({ navigation, route }) => {
       from: {
         type: "patient",
         name: "Ethan Turner",
-        avatar: require("../../assets/patientImg1.png"),
+        avatar: require("../../../assets/patientImg1.png"),
       },
       meta: {
         issued: "2021-06-01",
@@ -143,8 +161,7 @@ export default Prescription = ({ navigation, route }) => {
     <View style={styles.container}>
       <Text style={styles.heading}>Prescription</Text>
       <View style={styles.body}>
-        {data
-          .filter((pres) => pres.from.type !== accessControl)
+        {screenState.list
           .map((item, ind) => (
             <PrescriptionCard data={item} key={ind} />
           ))}
@@ -154,30 +171,26 @@ export default Prescription = ({ navigation, route }) => {
 };
 
 const PrescriptionCard = ({ data }) => {
-  const issuedDate = new Date(data.meta.issued).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "short",
-  });
-  const expiresDate = new Date(data.meta.expires).toLocaleDateString("en-US", {
+  const issuedDate = new Date(data.created_at).toLocaleDateString("en-US", {
     day: "numeric",
     month: "short",
   });
   return (
     <View style={styles.cardContainer}>
       <View style={styles.cardHeader}>
-        <Image source={data.from.avatar} style={styles.avatar} />
+        <Image source={require("../../../assets/patientImg1.png")} style={styles.avatar} />
         <View style={styles.doctorInfo}>
-          <Text style={styles.doctorName}>{data.from.name}</Text>
-          <Text style={styles.doctorSpeciality}>{data.from.speciality}</Text>
+          <Text style={styles.doctorName}>{data.patient.full_name}</Text>
+          {/* <Text style={styles.doctorSpeciality}>{data.from.speciality}</Text> */}
         </View>
-        <Text style={styles.dates}>{`${issuedDate} - ${expiresDate}`}</Text>
+        <Text style={styles.dates}>{`${issuedDate}`}</Text>
       </View>
       <View style={styles.medicinesContainer}>
-        {data.medicines.map((medicine, ind) => (
+        {data.detail.map((medicine, ind) => (
           <View style={styles.medicine} key={ind}>
             <Text
               style={styles.medicineName}
-            >{`${medicine.name.toUpperCase()} - ${medicine.frequency.toUpperCase()}`}</Text>
+            >{`${medicine.medicine_name.toUpperCase()} - ${medicine.number_of_doze}`}X</Text>
             <Text style={styles.medicineFreq}>{medicine.time}</Text>
           </View>
         ))}

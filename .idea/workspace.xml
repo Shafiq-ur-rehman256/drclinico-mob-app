@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02ce213a-6090-420d-a889-db84431857b3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/Doctor/doctorChatBox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Doctor/doctorPrescription.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Patient/patientChatBox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Patient/prescription.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chatbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chatbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/doctor.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/doctor.Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/patient.Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/patient.Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Patient/patientDontation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Patient/patientDontation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/emergencyHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/emergencyHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/prescription.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/api.doctor..service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/api.doctor..service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/doctorReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/doctorReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,17 +39,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/SHAFIQ/Desktop/development/University/final year project/drclinico-mob-app&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;memory.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "ScreenshotViewer.SavePath": "C:/Users/SHAFIQ/Desktop/fyp-ss",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "C:/Users/SHAFIQ/Desktop/fyp-ss",
+    "settings.editor.selected.configurable": "memory.settings"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

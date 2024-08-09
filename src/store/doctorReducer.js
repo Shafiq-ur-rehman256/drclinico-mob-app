@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { getAllConvoForDocs, getAllPatientChat, sendMessageToPatient, startAppointmentByDoctor } from "../services/api.doctor..service";
+import { getAllConvoForDocs, getAllPatientChat, getAllPrescription, sendMessageToPatient, startAppointmentByDoctor } from "../services/api.doctor..service";
 
 // THUNKS START HERE
 export const triggerStartAppointment = createAsyncThunk(
@@ -35,6 +35,14 @@ export const GetAllPatientChat = createAsyncThunk(
     }
 )
 
+export const GetAllPrescription = createAsyncThunk(
+    'prescription',
+    async () =>{
+        const response = await getAllPrescription();
+        return response.data;
+    }
+)
+
 // THUNKS END HERE
 
 const doctorState = {
@@ -42,6 +50,9 @@ const doctorState = {
         conversations: [],
         selected_Conversation: null,
         open_chat: []
+    },
+    prescriptionScreen: {
+        list: []
     }
 
 };
@@ -85,6 +96,10 @@ const doctorSlice = createSlice({
 
         builder.addCase(GetAllPatientChat.fulfilled, (state, action) =>{
             state.chatScreen.open_chat =  action.payload;
+        })
+
+        builder.addCase(GetAllPrescription.fulfilled, (state, action)=>{
+            state.prescriptionScreen.list = action.payload;
         })
 
     }

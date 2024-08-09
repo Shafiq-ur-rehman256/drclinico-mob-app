@@ -19,13 +19,14 @@ export default EmergencyHome = ({ navigation }) => {
   const getActiveDocList = async() =>{
     
     const response = await activeDoctorList()
-    return response.data;
+    // return response.data;
+    setDoctors(response.data)
     
   }
+
   
-  useEffect(async()=>{
-    const list = await getActiveDocList()
-    setDoctors(list)
+  useEffect(()=>{
+   getActiveDocList()
     
   },[])
 

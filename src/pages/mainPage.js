@@ -5,7 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import PatientHome from "./Patient/patientHome";
 import Inbox from "../pages/Patient/inbox";
 import UpdateProfile from "../pages/Doctor/updateProfile";
-import Prescription from "./prescription";
+import Prescription from "../pages/Patient/prescription";
 import PatientProfile from '../pages/Patient/patientProfile'
 import doctorInbox from "./Doctor/doctorInbox";
 import { useEffect } from "react";
@@ -13,6 +13,7 @@ import { socket } from "../services/socket.service";
 import { useDispatch, useSelector } from "react-redux";
 import { setSocketConnection } from "../store/reducers";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import doctorPrescription from "./Doctor/doctorPrescription";
 // import DoctorIndex
 function HomeScreen() {
   return (
@@ -113,7 +114,7 @@ export default Mainpage = ({ route }) => {
     >
       <Tab.Screen
         name="Settings"
-        component={Prescription}
+        component={route.params?.accessControl == 'patient'? Prescription: doctorPrescription}
         initialParams={{ data: route.params }}
       />
       <Tab.Screen name="Settings1" component={SettingsScreen} />

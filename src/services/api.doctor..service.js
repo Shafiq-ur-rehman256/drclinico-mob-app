@@ -200,7 +200,22 @@ export const getAllPatientChat = async(patient_id) =>{
         console.log(`${api_routes.doctor.patient_chats}/${patient_id}`);
         const headers = await getDoctorAuthHeaders();
         let response = await axios.get(`${api_routes.doctor.patient_chats}/${patient_id}`, {headers: headers});
-        console.log(response);
+        return response.data;
+
+    } catch (error) {
+        // console.log(error);
+        const Error = {
+            code: 0,
+            message: error
+        }
+        return Error;
+    }
+}
+
+export const getAllPrescription = async() =>{
+    try {
+        const headers = await getDoctorAuthHeaders();
+        let response = await axios.get(`${api_routes.doctor.prescription_list}`, {headers: headers});
         return response.data;
 
     } catch (error) {
